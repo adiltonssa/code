@@ -11,13 +11,10 @@ import math
 import matplotlib.pyplot as plt
 import plotly as py
 import plotly.graph_objs as go
-py.init_notebook_mode(connected=True)
 import plotly.express as px
 import seaborn as sns
 from scipy.optimize import minimize
 import scipy.optimize as spo
-import warnings
-warnings.filterwarnings('ignore')
 from plotly.subplots import make_subplots
 import streamlit as st
 
