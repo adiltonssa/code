@@ -68,6 +68,7 @@ DP_B=[]
 PF=[]
 
 Pf=P_in
+l_s=pd.DataFrame(l_s)
 
 for i in range(len(l_s)):
 
