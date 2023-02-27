@@ -21,8 +21,8 @@ warnings.filterwarnings('ignore')
 from plotly.subplots import make_subplots
 
 
-image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
-st.sidebar.image(image)
+#image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
+#st.sidebar.image(image)
 
 
 import streamlit as st
