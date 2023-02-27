@@ -54,7 +54,7 @@ if check_password():
 
     st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
-    FR = st.slider('Flow (kg/h): ',1, 10000,1000)
+    FR = st.slider('Flow Rate (kg/h): ',1, 10000,1000)
    
     Elem=st.slider('Elements: ',1, 100,20)
    
