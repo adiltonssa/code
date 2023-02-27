@@ -67,7 +67,7 @@ sp_g=[]
 DP_B=[]
 PF=[]
 
-Pf=P_inlet
+Pf=P_in
 
 for i in range(len(l_s)):
 
