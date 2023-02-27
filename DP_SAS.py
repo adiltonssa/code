@@ -55,11 +55,9 @@ if check_password():
     st.header('Delta Pressure Multisteps - Slurry Process INEOS')
 
     FR = st.slider('Flow (kg/h): ',1, 10000,1000)
-    st.write('Flow :', FR,'(kg/h)')
-
+   
     Elem=st.slider('Elements: ',1, 100,20)
-    st.write('Numbers of elements: ', Elem)
-
+   
     st.sidebar.header('Process inputs:')
     Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
     Dens= st.sidebar.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
