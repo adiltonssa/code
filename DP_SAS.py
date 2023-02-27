@@ -62,7 +62,7 @@ if check_password():
     Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
     Dens= st.sidebar.number_input('Density (kg/m3)',value=55.0,min_value=1.0, max_value=1000.0,step=0.1)
     P_in= st.sidebar.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
-    P_out= st.sidebar.number_input('Pressure out (bara):',value=4.0,min_value=1.0,step=0.1, max_value=100.0)
+    P_out= st.sidebar.number_input('Pressure out (bara):',value=4.0,min_value=0.1,step=0.1, max_value=100.0)
     Visc= st.sidebar.number_input('Viscosity (cP): ',value=0.0010,min_value=0.0001, max_value=5.000,step=0.001,format="%.4f")
     MW= st.sidebar.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
     k=st.sidebar.number_input('Compressibility factor: ',value=1.15)
