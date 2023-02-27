@@ -5,3 +5,4 @@ scipy
 warnings
 math
 numpy
+python==3.9
