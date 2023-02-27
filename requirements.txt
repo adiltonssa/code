@@ -5,6 +5,3 @@ scipy
 numpy
 scikit-learn
 plotly
-plotly.offline
-plotly.graph_objs
-plotly.subplots
