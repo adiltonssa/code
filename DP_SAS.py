@@ -15,7 +15,7 @@ from scipy.optimize import minimize
 import scipy.optimize as spo
 from plotly.subplots import make_subplots
 import streamlit as st
-import math as math
+
 
 #image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
 #st.sidebar.image(image)
@@ -57,7 +57,7 @@ l_s=pd.DataFrame(l_s)
 def Df2(sp,ls,vis,di,rou):
     
     def diff(pc):
-        diff=100000*((0.0625/((math.log10(rou/di/3.7+5.74/(Re**0.9))))**2)-(pc*(di/1000)*9.81/(2*ls*(sp**2))))
+        diff=100000*((0.0625/((np.log10(rou/di/3.7+5.74/(Re**0.9))))**2)-(pc*(di/1000)*9.81/(2*ls*(sp**2))))
         return diff
     
     pc = spo.root(diff,0)
