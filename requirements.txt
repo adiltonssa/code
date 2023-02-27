@@ -6,3 +6,4 @@ warnings
 math
 numpy
 python==3.9
+scikit-learn
