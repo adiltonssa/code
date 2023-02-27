@@ -9,21 +9,21 @@ import pandas as pd
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-#import plotly as py
+import plotly as py
 import plotly.graph_objs as go
-#py.init_notebook_mode(connected=True)
-#import plotly.express as px
-#import seaborn as sns
+py.init_notebook_mode(connected=True)
+import plotly.express as px
+import seaborn as sns
 from scipy.optimize import minimize
 import scipy.optimize as spo
 import warnings
 warnings.filterwarnings('ignore')
 from plotly.subplots import make_subplots
-
+import streamlit as st
 
 #image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
 #st.sidebar.image(image)
-import streamlit as st
+
 
 
 FR = st.slider('Flow (kg/h): ',1, 10000,1000)
