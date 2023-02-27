@@ -32,7 +32,7 @@ col1, col2 = st.columns(2)
 with col1: 
     st.header('Process inputs:')
     Temp= st.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
-    Den= st.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
+    Dens= st.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
     P_in= st.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
     P_out= st.number_input('Pressure out (bara):',value=4.0,min_value=1.0,step=0.1, max_value=100.0)
     Visc= st.number_input('Viscosity (cP): ',value=0.010,min_value=0.0001, max_value=5.000,step=0.001)
