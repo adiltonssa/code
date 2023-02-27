@@ -109,7 +109,7 @@ elif var1=='Velocity(m/s)':
 else:
     nam1='Elem DP (m)'
 
- if var2=='P(bar)':
+if var2=='P(bar)':
     nam2='P(bar)'
 elif var2=='DP(Bar)':
     nam2='DP(Bar)'
