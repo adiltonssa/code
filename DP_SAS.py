@@ -104,12 +104,12 @@ fig.add_trace(go.Scatter(y=df[var1],x=df.index),secondary_y=False)
 fig.add_trace(go.Scatter(y=df[var2],x=df.index),secondary_y=True)
 
 st.plotly_chart(fig, use_container_width=True)
-vm=df['Velocity'].max()
+vm=df['Velocity(m/s)'].max()
 
 if vm>=critical_speed:
-    st.warning('Velocity maximum: ',df['Velocity'].max(), '> Critical Speed :',critical_speed, icon="⚠️")
+    st.warning('Velocity maximum: ',df['Velocity(m/s)'].max(), '> Critical Speed :',critical_speed, icon="⚠️")
 else:
-    st.info('Velocity maximum: ',df['Velocity'].max(),' < Critical Speed :',critical_speed, icon="ℹ️")
+    st.info('Velocity maximum: ',df['Velocity(m/s)'].max(),' < Critical Speed :',critical_speed, icon="ℹ️")
 
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
 
