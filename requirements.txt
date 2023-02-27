@@ -1,6 +1,6 @@
 pandas
 streamlit
-mathplotlib
+matplotlib==3.2.2
 scipy
 warnings
 math
