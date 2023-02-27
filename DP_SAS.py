@@ -95,8 +95,8 @@ df['Velocity(m/s)']=sp_g
 df['P(bar)']=PF
 df['Elem DP (m)']=l_s
 
-var1=st.selectbox('Select the variable 1:', ['DP(Bar)','DP_g','Velocity(m/s)','P(bar)','Elem DP (m)'])
-var2=st.selectbox('Select the variable 2:', ['DP(Bar)','DP_g','Velocity(m/s)','P(bar)','Elem DP (m)'])
+var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP_g(m)','Velocity(m/s)','Elem DP (m)'])
+var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP_g(m)',,'P(bar)','Elem DP (m)'])
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
