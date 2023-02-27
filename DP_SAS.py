@@ -107,9 +107,12 @@ st.plotly_chart(fig, use_container_width=True)
 vm=df['Velocity(m/s)'].max()
 
 if vm>=critical_speed:
-    st.info('Velocity maximum (m/s): ',vm, '> Critical Speed (m/s):',critical_speed, icon="⚠️")
+    st.warning('Velocity maximum (m/s)> Critical Speed (m/s), icon="⚠️")
 else:
-    st.info('Velocity maximum (m/s): ',vm,' < Critical Speed (m/s):',critical_speed, icon="ℹ️")
+    st.info('Velocity maximum (m/s) < Critical Speed, icon="ℹ️")
 
+st.write('Critical speed(m/s): ', critical_speed)
+st.write('Maximum speed(m/s): ', vm)
+            
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
 
