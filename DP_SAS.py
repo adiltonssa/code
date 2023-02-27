@@ -48,8 +48,6 @@ def check_password():
         return True
 
 if check_password():
-    st.write("Here goes your normal Streamlit app...")
-    st.button("Click me")
 
     image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
     st.sidebar.image(image)
