@@ -112,8 +112,8 @@ if vm>=critical_speed:
 else:
     st.info('Velocity maximum (m/s) < Critical Speed', icon="ℹ️")
 
-st.write('Critical speed(m/s): ', critical_speed.round(2))
-st.write('Maximum speed(m/s): ', vm.round(2))
+st.write('Critical speed(m/s): ', round(critical_speed,2))
+st.write('Maximum speed(m/s): ', round(vm,2))
             
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
 
