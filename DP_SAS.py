@@ -8,8 +8,8 @@
 import pandas as pd
 import numpy as np
 import math
-#import matplotlib.pyplot as plt
-import plotly as py
+import matplotlib.pyplot as plt
+#import plotly as py
 import plotly.graph_objs as go
 py.init_notebook_mode(connected=True)
 import plotly.express as px
