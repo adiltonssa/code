@@ -29,23 +29,21 @@ st.write('Flow :', FR,'(kg/h)')
 Elem=st.slider('Elements: ',1, 100,20)
 st.write('Numbers of elements: ', FR)
 
-col1, col2 = st.columns(2)
+#col1, col2 = st.columns(2)
 
-with col1: 
-    st.header('Process inputs:')
-    Temp= st.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
-    Dens= st.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
-    P_in= st.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
-    P_out= st.number_input('Pressure out (bara):',value=4.0,min_value=1.0,step=0.1, max_value=100.0)
-    Visc= st.number_input('Viscosity (cP): ',value=0.0010,min_value=0.0001, max_value=5.000,step=0.001)
-    MW= st.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
-    k=st.number_input('Compressibility factor: ',value=1.15)
+st.sidebar.header('Process inputs:')
+Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
+Dens= st.sidebar.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
+P_in= st.sidebar.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
+P_out= st.sidebar.number_input('Pressure out (bara):',value=4.0,min_value=1.0,step=0.1, max_value=100.0)
+Visc= st.sidebar.number_input('Viscosity (cP): ',value=0.0010,min_value=0.0001, max_value=5.000,step=0.001)
+MW= st.sidebar.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
+k=st.sidebar.number_input('Compressibility factor: ',value=1.15)
 
-with col2:
-    st.header('Pipe characteristics:')
-    rou=st.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001)
-    l=st.number_input('Equiv. length (m): ',value=10,min_value=1, max_value=100)
-    di=st.number_input('Diameter (mm): ',value=10.0,min_value=1.0, max_value=200.0,step=0.1)
+st.sidebar.header('Pipe characteristics:')
+rou=st.sidebar.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001)
+l=st.sidebar.number_input('Equiv. length (m): ',value=10,min_value=1, max_value=100)
+di=st.sidebar.number_input('Diameter (mm): ',value=10.0,min_value=1.0, max_value=200.0,step=0.1)
 
 critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
     
