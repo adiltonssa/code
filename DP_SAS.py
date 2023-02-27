@@ -75,7 +75,7 @@ for i in range(len(l_s)):
     sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
     Re=rho*sp*(di/1000)/(Visc/1000)
      
-    res=Df2(sp,l_s[0][i],Visc,di,roughness)  
+    res=Df2(sp,l_s[0][i],Visc,di,rou)  
     Pf=(Pf-res*rho*9.81*0.00001)
     
     DP_g.append(res)
