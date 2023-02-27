@@ -150,7 +150,7 @@ if check_password():
 
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
     fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
-    fig.update_layout(height=600, width=800, title_text="Delta P Multisteps - Slurry INEOS")
+    fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
 
     st.plotly_chart(fig, use_container_width=True)
     vm=df['Velocity(m/s)'].max()
@@ -158,7 +158,7 @@ if check_password():
     if vm>=critical_speed:
         st.warning('Velocity maximum (m/s)> Critical Speed (m/s)', icon="⚠️")
     else:
-        st.info('Velocity maximum (m/s) < Critical Speed', icon="ℹ️")
+        st.info('Velocity maximum (m/s) < Critical Speed(m/s)', icon="ℹ️")
 
     st.write('Critical speed(m/s): ', round(critical_speed,2))
     st.write('Maximum speed(m/s): ', round(vm,2))
