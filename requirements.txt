@@ -1,7 +1,6 @@
 pandas
 streamlit
 mathplotlib
-plotly
 scipy
 warnings
 math
