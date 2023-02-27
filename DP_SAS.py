@@ -51,6 +51,8 @@ l_s=[]
 for i in range(Elem-1):
     l_s.append(((Elem-(i+1))*2-1)/(pow(Elem-1,2))*l)
 
+l_s=pd.DataFrame(l_s) 
+
 def Df2(sp,ls,vis,di,rou):
     
     def diff(pc):
@@ -68,7 +70,7 @@ DP_B=[]
 PF=[]
 
 Pf=P_in
-l_s=pd.DataFrame(l_s)
+
 
 for i in range(len(l_s)):
 
