@@ -71,7 +71,7 @@ Pf=P_in
 
 for i in range(len(l_s)):
 
-    rho=Dens*(Pf/P_inlet)**2
+    rho=Dens*(Pf/P_in)**2
     sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
     Re=rho*sp*(diameter/1000)/(Visc/1000)
      
