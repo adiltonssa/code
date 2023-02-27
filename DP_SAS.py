@@ -107,9 +107,9 @@ st.plotly_chart(fig, use_container_width=True)
 vm=df['Velocity(m/s)'].max()
 
 if vm>=critical_speed:
-    st.warning('Velocity maximum (m/s)> Critical Speed (m/s), icon="⚠️")
+    st.warning('Velocity maximum (m/s)> Critical Speed (m/s)', icon="⚠️")
 else:
-    st.info('Velocity maximum (m/s) < Critical Speed, icon="ℹ️")
+    st.info('Velocity maximum (m/s) < Critical Speed', icon="ℹ️")
 
 st.write('Critical speed(m/s): ', critical_speed)
 st.write('Maximum speed(m/s): ', vm)
