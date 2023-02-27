@@ -90,18 +90,40 @@ for i in range(len(l_s)):
 df=pd.DataFrame()
 
 df['DP(Bar)']=DP_B
-df['DP_g(m)']=DP_g
+df['DP(m)']=DP_g
 df['Velocity(m/s)']=sp_g
 df['P(bar)']=PF
 df['Elem DP (m)']=l_s
 
-var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP_g(m)','Velocity(m/s)','Elem DP (m)'])
-var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP_g(m)','P(bar)','Elem DP (m)'])
+var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
 
+if var1=='P(bar)':
+    nam1='P(bar)'
+elseif var1=='DP(Bar)':
+    nam1='DP(Bar)'
+elseif var1=='DP(m)':
+    nam1='DP(m)'
+elseif var1=='Velocity(m/s)':
+    nam1='Velocity(m/s)'
+else:
+    nam1='Elem DP (m)'
+
+ if var2=='P(bar)':
+    nam2='P(bar)'
+elseif var2=='DP(Bar)':
+    nam2='DP(Bar)'
+elseif var2=='DP(m)':
+    nam2='DP(m)'
+elseif var2=='Velocity(m/s)':
+    nam2='Velocity(m/s)'
+else:
+    nam2='Elem DP (m)'   
+    
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig.add_trace(go.Scatter(y=df[var1],x=df.index),secondary_y=False)
-fig.add_trace(go.Scatter(y=df[var2],x=df.index),secondary_y=True)
+fig.add_trace(go.Scatter(y=df[var1],x=df.index),secondary_y=False,name=nam1)
+fig.add_trace(go.Scatter(y=df[var2],x=df.index),secondary_y=True,name=nam2)
 fig.update_layout(height=600, width=800, title_text="Delta P Multisteps - Slurry INEOS")
 
 st.plotly_chart(fig, use_container_width=True)
