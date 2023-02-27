@@ -96,7 +96,7 @@ df['P(bar)']=PF
 df['Elem DP (m)']=l_s
 
 var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP_g(m)','Velocity(m/s)','Elem DP (m)'])
-var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP_g(m)',,'P(bar)','Elem DP (m)'])
+var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP_g(m)','P(bar)','Elem DP (m)'])
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -104,8 +104,9 @@ fig.add_trace(go.Scatter(y=df[var1],x=df.index),secondary_y=False)
 fig.add_trace(go.Scatter(y=df[var2],x=df.index),secondary_y=True)
 
 st.plotly_chart(fig, use_container_width=True)
+vm=df['Velocity'].max()
 
-if df['Velocity'].max()>=critical_speed:
+if vm>=critical_speed:
     st.warning('Velocity maximum: ',df['Velocity'].max(), '> Critical Speed :',critical_speed, icon="⚠️")
 else:
     st.info('Velocity maximum: ',df['Velocity'].max(),' < Critical Speed :',critical_speed, icon="ℹ️")
