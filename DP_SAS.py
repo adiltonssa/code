@@ -27,7 +27,7 @@ FR = st.slider('Flow (kg/h): ',1, 10000,1000)
 st.write('Flow :', FR,'(kg/h)')
 
 Elem=st.slider('Elements: ',1, 100,20)
-st.write('Numbers of elements: ', FR)
+st.write('Numbers of elements: ', Elem)
 
 #col1, col2 = st.columns(2)
 
