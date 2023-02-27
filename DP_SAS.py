@@ -52,7 +52,7 @@ if check_password():
     image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
     st.sidebar.image(image)
 
-    st.header('Delta Pressure Multisteps - SAS Slurry Process INEOS')
+    st.header('Delta Pressure Multisteps - Slurry Process INEOS')
 
     FR = st.slider('Flow (kg/h): ',1, 10000,1000)
     st.write('Flow :', FR,'(kg/h)')
