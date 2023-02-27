@@ -34,7 +34,7 @@ with col1:
     Temp= st.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
     Den= st.number_input('Density (kg/m3)',value=11,min_value=1, max_value=1000)
     P_in= st.number_input('Pressure inlet (bara): ',value=5,min_value=0.01, max_value=100)
-    P_out= st.number_input('Pressure inlet (bara): ',value=4.5,min_value=0.01, max_value=100)
+    P_out= st.number_input('Pressure out (bara): ',value=4.5,min_value=0.01, max_value=100)
     Visc= st.number_input('Viscosity (cP): ',value=0.01,min_value=0.0001, max_value=50)
     MW= st.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10, max_value=500)
     k=st.number_input('Compressibility factor: ',value=1.15,min_value=None, max_value=None)
