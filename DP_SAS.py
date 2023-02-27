@@ -100,22 +100,22 @@ var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','
 
 if var1=='P(bar)':
     nam1='P(bar)'
-elseif var1=='DP(Bar)':
+elif var1=='DP(Bar)':
     nam1='DP(Bar)'
-elseif var1=='DP(m)':
+elif var1=='DP(m)':
     nam1='DP(m)'
-elseif var1=='Velocity(m/s)':
+elif var1=='Velocity(m/s)':
     nam1='Velocity(m/s)'
 else:
     nam1='Elem DP (m)'
 
  if var2=='P(bar)':
     nam2='P(bar)'
-elseif var2=='DP(Bar)':
+elif var2=='DP(Bar)':
     nam2='DP(Bar)'
-elseif var2=='DP(m)':
+elif var2=='DP(m)':
     nam2='DP(m)'
-elseif var2=='Velocity(m/s)':
+elif var2=='Velocity(m/s)':
     nam2='Velocity(m/s)'
 else:
     nam2='Elem DP (m)'   
