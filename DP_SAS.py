@@ -32,18 +32,18 @@ col1, col2 = st.columns(2)
 with col1: 
     st.header('Process inputs:')
     Temp= st.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
-    Den= st.number_input('Density (kg/m3)',value=11,min_value=1, max_value=1000)
-    P_in= st.number_input('Pressure inlet (bara):',value=5,min_value=1,step=0.1, max_value=100) 
-    P_out= st.number_input('Pressure out (bara):',value=4,min_value=1,step=0.1, max_value=100)
-    Visc= st.number_input('Viscosity (cP): ',value=0.01,min_value=0.0001, max_value=5,step=0.001)
-    MW= st.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10, max_value=500,step=0.1)
+    Den= st.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
+    P_in= st.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
+    P_out= st.number_input('Pressure out (bara):',value=4.0,min_value=1,step=0.1, max_value=100.0)
+    Visc= st.number_input('Viscosity (cP): ',value=0.010,min_value=0.0001, max_value=5.000,step=0.001)
+    MW= st.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
     k=st.number_input('Compressibility factor: ',value=1.15)
 
 with col2:
     st.header('Pipe characteristics:')
-    rou=st.number_input('Roughness (mm): ',value=0.05,min_value=0.01, max_value=5,step=0.001)
+    rou=st.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001)
     l=st.number_input('Equiv. length (m): ',value=10,min_value=1, max_value=100)
-    Di=st.number_input('Diameter (mm): ',value=10,min_value=1, max_value=200,step=0.1)
+    Di=st.number_input('Diameter (mm): ',value=10.0,min_value=1.0, max_value=200.0,step=0.1)
 
 critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
     
