@@ -15,6 +15,7 @@ from scipy.optimize import minimize
 import scipy.optimize as spo
 from plotly.subplots import make_subplots
 import streamlit as st
+import math as math
 
 #image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
 #st.sidebar.image(image)
