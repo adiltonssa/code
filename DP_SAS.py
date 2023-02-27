@@ -17,8 +17,8 @@ from plotly.subplots import make_subplots
 import streamlit as st
 
 
-#image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
-#st.sidebar.image(image)
+image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
+st.sidebar.image(image)
 
 st.header('Delta Pressure Multisteps - SAS Slurry Process INEOS')
 
