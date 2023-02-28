@@ -55,6 +55,7 @@ if check_password():
     st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
     FR = st.slider('Flow Rate (kg/h): ',1, 10000,1000)
+    l=st.slider('Equiv. length (m): ',1,100,10)
    
     Elem=st.slider('Elements: ',1, 100,20)
    
@@ -69,7 +70,6 @@ if check_password():
 
     st.sidebar.header('Pipe characteristics:')
     rou=st.sidebar.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001,format="%.4f")
-    l=st.sidebar.number_input('Equiv. length (m): ',value=10,min_value=1, max_value=100)
     di=st.sidebar.number_input('Diameter (mm): ',value=100.0,min_value=1.0, max_value=200.0,step=0.1)
 
     critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
