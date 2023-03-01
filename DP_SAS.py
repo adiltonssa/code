@@ -58,14 +58,19 @@ if check_password():
     Elem=st.slider('Elements: ',1, 100,20)
    
     st.sidebar.header('Process inputs:')
+
     FR= st.number_input('Flow rate - Estimated (kg/h)',value=4000,min_value=10, max_value=20000)
     Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
-    Dens= st.sidebar.number_input('Density (kg/m3)',value=55.0,min_value=1.0, max_value=1000.0,step=0.1)
-    P_in= st.sidebar.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
-    P_out= st.sidebar.number_input('Pressure out (bara):',value=4.0,min_value=0.1,step=0.1, max_value=100.0)
+    Dens= st.sidebar.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
+    P_in= st.sidebar.number_input('Pressure inlet (bara):',value=3.5,min_value=1.0,step=0.1, max_value=100.0) 
+    P_out= st.sidebar.number_input('Pressure out (bara):',value=3.0,min_value=0.1,step=0.1, max_value=100.0)
     Visc= st.sidebar.number_input('Viscosity (cP): ',value=0.0010,min_value=0.0001, max_value=5.000,step=0.001,format="%.4f")
     MW= st.sidebar.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
     k=st.sidebar.number_input('Compressibility factor: ',value=1.15)
+
+    st.sidebar.header('Pipe characteristics:')
+    rou=st.sidebar.number_input('Roughness (mm): ',value=0.045,min_value=0.010, max_value=5.000,step=0.001,format="%.3f")
+    di=st.sidebar.number_input('Diameter (mm): ',value=100.0,min_value=1.0, max_value=200.0,step=0.1)
 
     st.sidebar.header('Pipe characteristics:')
     rou=st.sidebar.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001,format="%.4f")
