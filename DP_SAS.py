@@ -118,26 +118,26 @@ if check_password():
     Fl1=flow(P_inlet,Pf,FR1,rou,Visc,di,l_s)
     dift=Fl1-Dpr
 
-if dift>0:
-    print('There is root')
-    while  crf>=tol | inter<100:
+    if dift>0:
+        print('There is root')
+        while  crf>=tol | inter<100:
 
-        FRm=(FR1+FR0)*0.5
+            FRm=(FR1+FR0)*0.5
     
-        Flm=flow(P_inlet,Pf,FRm,rou,Visc,di,l_s)
-        crm=Dpr-Flm
+            Flm=flow(P_inlet,Pf,FRm,rou,Visc,di,l_s)
+            crm=Dpr-Flm
    
-        cr=Dpr-Fl1
+            cr=Dpr-Fl1
 
-        if crm<0:
-            FR1=FRm
-            FR0=FR0
-        else :
-            FR1=FR1
-            FR0=FRm
+            if crm<0:
+                FR1=FRm
+                FR0=FR0
+            else :
+                FR1=FR1
+                FR0=FRm
     
-            inter=inter+1
-            crf=1000*(FR1-FR0)/FR1
+                inter=inter+1
+                crf=1000*(FR1-FR0)/FR1
     
 
     FR=FR1
