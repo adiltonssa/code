@@ -80,7 +80,9 @@ if check_password():
         l_s.append(((Elem-(i+1))*2-1)/(pow(Elem-1,2))*l)
 
     l_s=pd.DataFrame(l_s) 
-
+    crf=8
+    inter=0
+    tol=1
     #Flow Equation:
     def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
         Pf=P_inlet
