@@ -3,7 +3,6 @@
 
 # In[ ]:
 
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -145,93 +144,92 @@ if check_password():
                 crf=1000*(FR1-FR0)/FR1
             #st.metric(label="Flow rate calculaded =", value=FR1, delta="Kg/h")
         
-            st.write('Flow rate calculaded =:', FR1, 'kg/h.')
-            st.write('Differencial Pressure =:', Dpr, 'Bar.')
+        st.write('Flow rate calculaded =:', FR1, 'kg/h.')
+        st.write('Differencial Pressure =:', Dpr, 'Bar.')
 
-            FR=FR1
+        FR=FR1
 
-            DP_g=[]
-            sp_g=[]
-            DP_B=[]
-            PF=[]
+        DP_g=[]
+        sp_g=[]
+        DP_B=[]
+        PF=[]
 
-            Pf=P_in
+        Pf=P_in
 
-            for i in range(len(l_s)):
+        for i in range(len(l_s)):
 
-                rho=Dens*(P_out/P_in)**2
-                sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
-                Re=rho*sp*(di/1000)/(Visc/1000)
+            rho=Dens*(P_out/P_in)**2
+            sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
+            Re=rho*sp*(di/1000)/(Visc/1000)
      
-                res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
-                Pf=(Pf-res*rho*9.81*0.00001)
+            res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
+            Pf=(Pf-res*rho*9.81*0.00001)
     
-                DP_g.append(res)
-                DP_B.append(res*rho*9.81*0.00001)
-                sp_g.append(sp)
-                PF.append(Pf)
+            DP_g.append(res)
+            DP_B.append(res*rho*9.81*0.00001)
+            sp_g.append(sp)
+            PF.append(Pf)
 
-            df=pd.DataFrame()
+        df=pd.DataFrame()
 
-            df['DP(Bar)']=DP_B
-            df['DP(m)']=DP_g
-            df['Velocity(m/s)']=sp_g
-            df['P(bar)']=PF
-            df['Elem DP (m)']=l_s
+        df['DP(Bar)']=DP_B
+        df['DP(m)']=DP_g
+        df['Velocity(m/s)']=sp_g
+        df['P(bar)']=PF
+        df['Elem DP (m)']=l_s
 
-            col1, col2 = st.columns(2)
-            with col1:
-                var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'],key=0)
-            with col2:
-                var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'],key=1)
+        col1, col2 = st.columns(2)
+        with col1:
+            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+        with col2:
+            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
 
-            if var1=='P(bar)':
-                nam1='P(bar)'
-            elif var1=='DP(Bar)':
-                nam1='DP(Bar)'
-            elif var1=='DP(m)':
-                nam1='DP(m)'
-            elif var1=='Velocity(m/s)':
-                nam1='Velocity(m/s)'
-            else:
-                nam1='Elem DP (m)'
+        if var1=='P(bar)':
+            nam1='P(bar)'
+        elif var1=='DP(Bar)':
+            nam1='DP(Bar)'
+        elif var1=='DP(m)':
+            nam1='DP(m)'
+        elif var1=='Velocity(m/s)':
+            nam1='Velocity(m/s)'
+        else:
+            nam1='Elem DP (m)'
 
-            if var2=='P(bar)':
-                nam2='P(bar)'
-            elif var2=='DP(Bar)':
-                nam2='DP(Bar)'
-            elif var2=='DP(m)':
-                nam2='DP(m)'
-            elif var2=='Velocity(m/s)':
-                nam2='Velocity(m/s)'
-            else:
-                nam2='Elem DP (m)'   
+        if var2=='P(bar)':
+            nam2='P(bar)'
+        elif var2=='DP(Bar)':
+            nam2='DP(Bar)'
+        elif var2=='DP(m)':
+            nam2='DP(m)'
+        elif var2=='Velocity(m/s)':
+            nam2='Velocity(m/s)'
+        else:
+            nam2='Elem DP (m)'   
             
 
-            fig = make_subplots(specs=[[{"secondary_y": True}]])
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-            fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
-            fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
-            fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
-            fig.update_xaxes(title_text="Elements")
+        fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
+        fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
+        fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
+        fig.update_xaxes(title_text="Elements")
 
-            st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
             
 
             
-            vm=df['Velocity(m/s)'].max()
+        vm=df['Velocity(m/s)'].max()
 
-            if vm>=critical_speed:
-                st.warning('Velocity maximum (m/s)> Critical Speed (m/s)', icon="⚠️")
-            else:
-                st.info('Velocity maximum (m/s) < Critical Speed(m/s)', icon="ℹ️")
+        if vm>=critical_speed:
+            st.warning('Velocity maximum (m/s)> Critical Speed (m/s)', icon="⚠️")
+        else:
+            st.info('Velocity maximum (m/s) < Critical Speed(m/s)', icon="ℹ️")
 
-            st.write('Critical speed(m/s): ', round(critical_speed,2))
-            st.write('Maximum speed(m/s): ', round(vm,2))           
+        st.write('Critical speed(m/s): ', round(critical_speed,2))
+        st.write('Maximum speed(m/s): ', round(vm,2))           
     else:
         print('Please, give another guess to flow!')
     
 
             
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
-
