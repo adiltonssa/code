@@ -147,6 +147,8 @@ if check_password():
     If inter==10:
         st.text('Number of interactions achieved:10')
         st.text('Please change the Flow Rate initial')
+    else:
+        
     FR=FR1
 
     DP_g=[]
