@@ -138,11 +138,7 @@ if dift>0:
     
             inter=inter+1
             crf=1000*(FR1-FR0)/FR1
-            
-else:
-    print('Please, give another guess to flow!')
-    
-st.metric('Flow rate (kg/h) ',"{:0.0f} K".format(FR1)) 
+ st.metric('Flow rate (kg/h) ',"{:0.0f} K".format(FR1)) 
 
 FR=FR1
     DP_g=[]
@@ -205,7 +201,7 @@ FR=FR1
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
     fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
     fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
-    fig.update_xaxes(title_text="Number of elements", row=1, col=1)
+    fig.update_xaxes(title_text="Elements")
 
     st.plotly_chart(fig, use_container_width=True)
     vm=df['Velocity(m/s)'].max()
@@ -216,7 +212,11 @@ FR=FR1
         st.info('Velocity maximum (m/s) < Critical Speed(m/s)', icon="ℹ️")
 
     st.write('Critical speed(m/s): ', round(critical_speed,2))
-    st.write('Maximum speed(m/s): ', round(vm,2))
+    st.write('Maximum speed(m/s): ', round(vm,2))           
+else:
+    print('Please, give another guess to flow!')
+    
+
             
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
 
