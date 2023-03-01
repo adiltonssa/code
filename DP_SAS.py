@@ -82,24 +82,24 @@ if check_password():
 
     #Flow Equation:
     def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
-    Pf=P_inlet
-    DP_g=[]
-    sp_g=[]
-    DP_B=[]
-    PF=[]
-    for i in range(len(l_s)):
+        Pf=P_inlet
+        DP_g=[]
+        sp_g=[]
+        DP_B=[]
+        PF=[]
+        for i in range(len(l_s)):
 
-        rho=Dens*(Pf/P_inlet)**2
-        sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
-        Re=rho*sp*(di/1000)/(Visc/1000)
+            rho=Dens*(Pf/P_inlet)**2
+            sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
+            Re=rho*sp*(di/1000)/(Visc/1000)
               
-        res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
+            res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
         
-        Pf=(Pf-res*rho*9.81*0.00001)
-        DP_g.append(res)
-        DP_B.append(res*rho*9.81*0.00001)
-        sp_g.append(sp)
-        PF.append(Pf)
+            Pf=(Pf-res*rho*9.81*0.00001)
+            DP_g.append(res)
+            DP_B.append(res*rho*9.81*0.00001)
+            sp_g.append(sp)
+            PF.append(Pf)
         
     return sum(DP_B)
     
