@@ -70,7 +70,7 @@ if check_password():
 
     st.sidebar.header('Pipe characteristics:')
     rou=st.sidebar.number_input('Roughness (mm): ',value=0.050,min_value=0.010, max_value=5.000,step=0.001,format="%.4f")
-    di=st.sidebar.number_input('Diameter (mm): ',value=77,min_value=1.0, max_value=200.0,step=0.1)
+    di=st.sidebar.number_input('Diameter (mm): ',value=77.5,min_value=1.0, max_value=200.0,step=0.1)
 
     critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
     Dpr= P_out-P_in
