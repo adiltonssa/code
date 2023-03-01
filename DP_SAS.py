@@ -54,12 +54,12 @@ if check_password():
 
     st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
-    FR = st.slider('Flow Rate (kg/h): ',1, 10000,1000)
+
     l=st.slider('Equiv. length (m): ',1,100,10)
-   
     Elem=st.slider('Elements: ',1, 100,20)
    
     st.sidebar.header('Process inputs:')
+    Temp= st.number_input('Flow rate - Estimated (kg/h)',value=4000,min_value=10, max_value=20000)
     Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
     Dens= st.sidebar.number_input('Density (kg/m3)',value=55.0,min_value=1.0, max_value=1000.0,step=0.1)
     P_in= st.sidebar.number_input('Pressure inlet (bara):',value=5.0,min_value=1.0,step=0.1, max_value=100.0) 
@@ -80,6 +80,30 @@ if check_password():
 
     l_s=pd.DataFrame(l_s) 
 
+    #Flow Equation:
+    def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
+    Pf=P_inlet
+    DP_g=[]
+    sp_g=[]
+    DP_B=[]
+    PF=[]
+    for i in range(len(l_s)):
+
+        rho=Dens*(Pf/P_inlet)**2
+        sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
+        Re=rho*sp*(di/1000)/(Visc/1000)
+              
+        res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
+        
+        Pf=(Pf-res*rho*9.81*0.00001)
+        DP_g.append(res)
+        DP_B.append(res*rho*9.81*0.00001)
+        sp_g.append(sp)
+        PF.append(Pf)
+        
+    return sum(DP_B)
+    
+    #Find root two equations:
     def Df2(sp,ls,vis,di,rou):
     
         def diff(pc):
@@ -91,6 +115,36 @@ if check_password():
     
         return float(DP_f)
 
+Fl1=flow(P_inlet,Pf,FR1,rou,Visc,di,l_s)
+dift=Fl1-Dpr
+
+if dift>0:
+    print('There is root')
+    while  crf>=tol | inter<100:
+
+        FRm=(FR1+FR0)*0.5
+    
+        Flm=flow(P_inlet,Pf,FRm,rou,Visc,di,l_s)
+        crm=Dpr-Flm
+   
+        cr=Dpr-Fl1
+
+        if crm<0:
+            FR1=FRm
+            FR0=FR0
+        else :
+            FR1=FR1
+            FR0=FRm
+    
+            inter=inter+1
+            crf=1000*(FR1-FR0)/FR1
+            
+else:
+    print('Please, give another guess to flow!')
+    
+st.metric('Flow rate (kg/h) ',"{:0.0f} K".format(FR1)) 
+
+FR=FR1
     DP_g=[]
     sp_g=[]
     DP_B=[]
@@ -151,6 +205,7 @@ if check_password():
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
     fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
     fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
+    fig.update_xaxes(title_text="Number of elements", row=1, col=1)
 
     st.plotly_chart(fig, use_container_width=True)
     vm=df['Velocity(m/s)'].max()
