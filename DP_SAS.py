@@ -125,7 +125,6 @@ if check_password():
     dift=Fl1-Dpr
 
     if dift>0:
-        print('There is root')
         while  crf>=tol | inter<100:
 
             FRm=(FR1+FR0)*0.5
@@ -146,8 +145,8 @@ if check_password():
                 crf=1000*(FR1-FR0)/FR1
             #st.metric(label="Flow rate calculaded =", value=FR1, delta="Kg/h")
         
-        st.write('Flow rate calculaded =:', FR1, 'kg/h.')
-        st.write('Differencial Pressure =:', Dpr, 'Bar.')
+            st.write('Flow rate calculaded =:', FR1, 'kg/h.')
+            st.write('Differencial Pressure =:', Dpr, 'Bar.')
 
             FR=FR1
 
