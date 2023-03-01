@@ -179,12 +179,11 @@ if check_password():
             df['P(bar)']=PF
             df['Elem DP (m)']=l_s
 
-            #col1, col2 = st.columns(2)
-    
-            #with col1:
-            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'],var1)
-            #with col2:
-            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'],var2)
+            col1, col2 = st.columns(2)
+            with col1:
+                var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'],0)
+            with col2:
+                var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'],1)
 
             if var1=='P(bar)':
                 nam1='P(bar)'
