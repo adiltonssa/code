@@ -145,8 +145,9 @@ if check_password():
                 inter=inter+1
                 crf=1000*(FR1-FR0)/FR1
             #st.metric(label="Flow rate calculaded =", value=FR1, delta="Kg/h")
-            st.write('Flow rate calculaded =:', FR1, 'kg/h.')
-            st.write('Differencial Pressure =:', Dpr, 'Bar.')
+        
+        st.write('Flow rate calculaded =:', FR1, 'kg/h.')
+        st.write('Differencial Pressure =:', Dpr, 'Bar.')
 
             FR=FR1
 
@@ -156,7 +157,6 @@ if check_password():
             PF=[]
 
             Pf=P_in
-
 
             for i in range(len(l_s)):
 
@@ -180,7 +180,11 @@ if check_password():
             df['P(bar)']=PF
             df['Elem DP (m)']=l_s
 
+            col1, col2 = st.columns(2)
+            
+            with col1:
             var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+            with col2:
             var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
 
             if var1=='P(bar)':
