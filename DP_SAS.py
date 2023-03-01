@@ -144,10 +144,10 @@ if check_password():
                 inter=inter+1
                 crf=1000*(FR1-FR0)/FR1
     
-    If inter==10:
-        st.text('Number of interactions achieved:10')
-        st.text('Please change the Flow Rate initial')
-    else:
+        If inter==10:
+            st.text('Number of interactions achieved:10')
+            st.text('Please change the Flow Rate initial')
+        else:
         
     FR=FR1
 
