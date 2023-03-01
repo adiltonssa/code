@@ -178,8 +178,7 @@ if check_password():
             df['P(bar)']=PF
             df['Elem DP (m)']=l_s
 
-            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
-            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
+            
 
             if var1=='P(bar)':
                 nam1='P(bar)'
@@ -211,6 +210,10 @@ if check_password():
             fig.update_xaxes(title_text="Elements")
 
             st.plotly_chart(fig, use_container_width=True)
+            
+            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
+            
             vm=df['Velocity(m/s)'].max()
 
             if vm>=critical_speed:
