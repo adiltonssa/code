@@ -115,7 +115,7 @@ if check_password():
     
         return float(DP_f)
 
-    Fl1=flow(P_inlet,Pf,FR1,rou,Visc,di,l_s)
+    Fl1=flow(P_in,Pf,FR1,rou,Visc,di,l_s)
     dift=Fl1-Dpr
 
     if dift>0:
@@ -124,7 +124,7 @@ if check_password():
 
             FRm=(FR1+FR0)*0.5
     
-            Flm=flow(P_inlet,Pf,FRm,rou,Visc,di,l_s)
+            Flm=flow(P_in,Pf,FRm,rou,Visc,di,l_s)
             crm=Dpr-Flm
    
             cr=Dpr-Fl1
