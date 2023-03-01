@@ -115,8 +115,8 @@ if check_password():
     
         return float(DP_f)
 
-Fl1=flow(P_inlet,Pf,FR1,rou,Visc,di,l_s)
-dift=Fl1-Dpr
+    Fl1=flow(P_inlet,Pf,FR1,rou,Visc,di,l_s)
+    dift=Fl1-Dpr
 
 if dift>0:
     print('There is root')
