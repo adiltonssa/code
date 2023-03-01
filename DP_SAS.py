@@ -203,7 +203,9 @@ if check_password():
                 nam2='Velocity(m/s)'
             else:
                 nam2='Elem DP (m)'   
-    
+            
+            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
             fig = make_subplots(specs=[[{"secondary_y": True}]])
 
             fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
@@ -213,8 +215,7 @@ if check_password():
 
             st.plotly_chart(fig, use_container_width=True)
             
-            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
-            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
+
             
             vm=df['Velocity(m/s)'].max()
 
