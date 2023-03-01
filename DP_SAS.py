@@ -129,7 +129,7 @@ if check_password():
 
             FRm=(FR1+FR0)*0.5
     
-            Flm=flow(P_in,Pf,FRm,rou,Visc,di,l_s)
+            Flm=flow(P_in,P_out,FRm,rou,Visc,di,l_s)
             crm=Dpr-Flm
    
             cr=Dpr-Fl1
