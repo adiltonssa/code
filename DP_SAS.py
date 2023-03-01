@@ -138,7 +138,7 @@ if dift>0:
     
             inter=inter+1
             crf=1000*(FR1-FR0)/FR1
-    st.metric('Flow rate (kg/h) ',"{:0.0f} K".format(FR1))) 
+    #st.metric('Flow rate (kg/h) ',"{:0.0f} K".format(FR1))) 
 
     FR=FR1
 
