@@ -181,9 +181,9 @@ if check_password():
 
             col1, col2 = st.columns(2)
             with col1:
-                var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'],0)
+                var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'],key=0)
             with col2:
-                var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'],1)
+                var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'],key=1)
 
             if var1=='P(bar)':
                 nam1='P(bar)'
