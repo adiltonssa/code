@@ -117,6 +117,9 @@ if check_password():
     
     FR0=0.5*FR
     FR1=2*FR
+    crf=8
+    inter=0
+    tol=1
     Fl1=flow(P_in,P_out,FR1,rou,Visc,di,l_s)
     
     dift=Fl1-Dpr
