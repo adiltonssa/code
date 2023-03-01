@@ -115,7 +115,7 @@ if check_password():
     
         return float(DP_f)
 
-    Fl1=flow(P_in,Pf,FR1,rou,Visc,di,l_s)
+    Fl1=flow(P_in,P_out,FR1,rou,Visc,di,l_s)
     dift=Fl1-Dpr
 
     if dift>0:
