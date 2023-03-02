@@ -15,7 +15,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 
-password = "zieglernatta"
+password = "streamlit123"
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -45,6 +45,39 @@ def check_password():
         # Password correct.
         return True
 
+def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
+        Pf=P_inlet
+        DP_g=[]
+        sp_g=[]
+        DP_B=[]
+        PF=[]
+        for i in range(len(l_s)):
+
+            rho=Dens*(Pf/P_inlet)**2
+            sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
+            Re=rho*sp*(di/1000)/(Visc/1000)
+              
+            res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
+        
+            DP_B.append(res*rho*9.81*0.00001)
+        
+        return sum(DP_B)
+    #########################################################
+    
+    #Find root two equations:
+def Df2(sp,ls,vis,di,rou,Re):
+    
+    def diff(pc):
+        diff=100000*((0.0625/((np.log10(rou/di/3.7+5.74/(Re**0.9))))**2)-(pc*(di/1000)*9.81/(2*ls*(sp**2))))    
+        return diff
+    
+    pc = spo.root(diff,0)
+    DP_f=pc.x
+    
+    return float(DP_f)
+    #########################################################    
+       
+    
 if check_password():
 
     image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
@@ -73,46 +106,17 @@ if check_password():
     critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
     Dpr=P_out-P_in
     
+    #########################################################
     l_s=[]
     for i in range(Elem-1):
         l_s.append(((Elem-(i+1))*2-1)/(pow(Elem-1,2))*l)
-
+    #########################################################
+    
     l_s=pd.DataFrame(l_s) 
 
     #Flow Equation:
-    def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
-        Pf=P_inlet
-        DP_g=[]
-        sp_g=[]
-        DP_B=[]
-        PF=[]
-        for i in range(len(l_s)):
-
-            rho=Dens*(Pf/P_inlet)**2
-            sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
-            Re=rho*sp*(di/1000)/(Visc/1000)
-              
-            res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
-        
-            Pf=(Pf-res*rho*9.81*0.00001)
-            DP_g.append(res)
-            DP_B.append(res*rho*9.81*0.00001)
-            sp_g.append(sp)
-            PF.append(Pf)
-        
-        return sum(DP_B)
+    #########################################################
     
-    #Find root two equations:
-    def Df2(sp,ls,vis,di,rou,Re):
-    
-        def diff(pc):
-            diff=100000*((0.0625/((np.log10(rou/di/3.7+5.74/(Re**0.9))))**2)-(pc*(di/1000)*9.81/(2*ls*(sp**2))))    
-            return diff
-    
-        pc = spo.root(diff,0)
-        DP_f=pc.x
-    
-        return float(DP_f)
     
     FR0=0.5*FR
     FR1=2*FR
@@ -122,7 +126,7 @@ if check_password():
     Fl1=flow(P_in,P_out,FR1,rou,Visc,di,l_s)
     
     dift=Fl1-Dpr
-
+    #########################################################
     if dift>0:
         while  crf>=tol | inter<100:
 
@@ -143,10 +147,11 @@ if check_password():
                 inter=inter+1
                 crf=1000*(FR1-FR0)/FR1
             #st.metric(label="Flow rate calculaded =", value=FR1, delta="Kg/h")
+        ########################################################    
         
         st.write('Flow rate calculaded =:', FR1, 'kg/h.')
         st.write('Differencial Pressure =:', Dpr, 'Bar.')
-
+    
         FR=FR1
 
         DP_g=[]
@@ -155,7 +160,7 @@ if check_password():
         PF=[]
 
         Pf=P_in
-
+        ########################################################
         for i in range(len(l_s)):
 
             rho=Dens*(P_out/P_in)**2
@@ -169,7 +174,7 @@ if check_password():
             DP_B.append(res*rho*9.81*0.00001)
             sp_g.append(sp)
             PF.append(Pf)
-
+        ########################################################
         df=pd.DataFrame()
 
         df['DP(Bar)']=DP_B
@@ -178,45 +183,7 @@ if check_password():
         df['P(bar)']=PF
         df['Elem DP (m)']=l_s
 
-        #col1, col2 = st.columns(2)
-        #with col1:
-        #    var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
-        #with col2:
-         #   var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
-
-        #if var1=='P(bar)':
-        #    nam1='P(bar)'
-        #elif var1=='DP(Bar)':
-        #    nam1='DP(Bar)'
-        #elif var1=='DP(m)':
-        #    nam1='DP(m)'
-        #elif var1=='Velocity(m/s)':
-        #    nam1='Velocity(m/s)'
-        #else:
-        #    nam1='Elem DP (m)'
-
-        #if var2=='P(bar)':
-        #    nam2='P(bar)'
-        #elif var2=='DP(Bar)':
-       #     nam2='DP(Bar)'
-        #elif var2=='DP(m)':
-        #    nam2='DP(m)'
-        #elif var2=='Velocity(m/s)':
-        #    nam2='Velocity(m/s)'
-        #else:
-        #    nam2='Elem DP (m)'   
-            
-
-        #fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-        #fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
-        #fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
-        #fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
-        #fig.update_xaxes(title_text="Elements")
-
-       # st.plotly_chart(fig, use_container_width=True)
-            
-
+        
             
         vm=df['Velocity(m/s)'].max()
 
@@ -228,8 +195,10 @@ if check_password():
         st.write('Critical speed(m/s): ', round(critical_speed,2))
         st.write('Maximum speed(m/s): ', round(vm,2))           
     else:
-        print('Please, give another guess to flow!')
+        print('Please, define another initial Flow Rate')
     
 
             
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
+
+
