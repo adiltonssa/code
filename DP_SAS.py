@@ -145,12 +145,16 @@ if check_password():
         inter=inter+1
         crf=1000*(FR1-FR0)/FR1
     
-    
-        #st.metric(label="Flow rate calculaded =", value=FR1, delta="Kg/h")
-        ########################################################    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric(label="Flow rate calculaded (Kg/h) =", value=FR1)
+    with col2:
+        st.metric(label="Differencial Pressure (bar) =", value=-Dpr)
+             
+    ########################################################    
         
-    st.write('Flow rate calculaded =:', FR1, 'kg/h.')
-    st.write('Differencial Pressure =:', Dpr, 'Bar.')
+    #st.write('Flow rate calculaded =:', FR1, 'kg/h.')
+    #st.write('Differencial Pressure =:', -Dpr, 'Bar.')
     
     FR=FR1
 
