@@ -147,9 +147,9 @@ if check_password():
     
     col1, col2 = st.columns(2)
     with col1:
-        st.metric(label="Flow rate calculaded (Kg/h) =", value=FR1.style.format("{:.2f}"))
+        st.metric(label="Flow rate calculaded (Kg/h) =", value=round(FR1,2))
     with col2:
-        st.metric(label="Differencial Pressure (bar) =", value=-Dpr.style.format("{:.2f}"))
+        st.metric(label="Differencial Pressure (bar) =", value=round(-Dpr,2))
              
     ########################################################    
         
