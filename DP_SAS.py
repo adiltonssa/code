@@ -15,7 +15,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 
-password = "streamlit123"
+#password = "streamlit123"
 
 def check_password():
     """Returns `True` if the user had the correct password."""
