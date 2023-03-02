@@ -120,9 +120,6 @@ if check_password():
     tol=1
     Fl1=flow(P_in,P_out,FR,rou,Visc,di,l_s)
     dift=Dpr-Fl1
-    st.write('dift =:', FR)
-    st.write('Fl1 =:', Fl1)
-    st.write('dift =:', dift)
 
     while dift>0:
         FR=2*FR
@@ -154,7 +151,7 @@ if check_password():
     
     col1, col2 = st.columns(2)
     with col1:
-        st.metric(label="Flow rate calculaded (Kg/h) =", value=round(FR1,2))
+        st.metric(label="Flow rate calculaded (Kg/h) =", value=round(FRm,2))
     with col2:
         st.metric(label="Differencial Pressure (bar) =", value=round(-Dpr,3))
              
@@ -163,7 +160,7 @@ if check_password():
     #st.write('Flow rate calculaded =:', FR1, 'kg/h.')
     #st.write('Differencial Pressure =:', -Dpr, 'Bar.')
     
-    FR=FR1
+    Ft=FRm
 
     DP_g=[]
     sp_g=[]
@@ -175,7 +172,7 @@ if check_password():
     for i in range(len(l_s)):
 
         rho=Dens*(P_out/P_in)**2
-        sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
+        sp=4*Ft/(rho*np.pi*(0.001*di)**2)/3600
         Re=rho*sp*(di/1000)/(Visc/1000)
      
         res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
