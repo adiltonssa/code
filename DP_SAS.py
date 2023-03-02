@@ -183,6 +183,34 @@ if check_password():
     df['P(bar)']=PF
     df['Elem DP (m)']=l_s
 
+     col1, col2 = st.columns(2)
+        with col1:
+            var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+        with col2:
+            var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
+
+        if var1=='P(bar)':
+            nam1='P(bar)'
+        elif var1=='DP(Bar)':
+            nam1='DP(Bar)'
+        elif var1=='DP(m)':
+            nam1='DP(m)'
+        elif var1=='Velocity(m/s)':
+            nam1='Velocity(m/s)'
+        else:
+            nam1='Elem DP (m)'
+
+        if var2=='P(bar)':
+            nam2='P(bar)'
+        elif var2=='DP(Bar)':
+            nam2='DP(Bar)'
+        elif var2=='DP(m)':
+            nam2='DP(m)'
+        elif var2=='Velocity(m/s)':
+            nam2='Velocity(m/s)'
+        else:
+            nam2='Elem DP (m)'   
+            
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
