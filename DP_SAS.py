@@ -85,11 +85,10 @@ if check_password():
     st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
 
-    l=st.slider('Equiv. length (m): ',1,100,11)
+    l=st.slider('Equiv. length (m): ',1,50,11)
     Elem=st.slider('Elements: ',1, 100,25)
    
     st.sidebar.header('Process inputs:')
-    FR= st.number_input('Flow rate - Estimated (kg/h)',value=4000,min_value=10, max_value=20000)
     Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
     Dens= st.sidebar.number_input('Density (kg/m3)',value=11.0,min_value=1.0, max_value=1000.0,step=0.1)
     P_in= st.sidebar.number_input('Pressure inlet (bara):',value=3.5,min_value=1.0,step=0.1, max_value=100.0) 
@@ -113,19 +112,8 @@ if check_password():
     
     l_s=pd.DataFrame(l_s) 
 
-    #Flow Equation:
     #########################################################
-    
-    
-    FR0=0.5*FR
-    FR1=2*FR
-    crf=10
-    inter=0
-    tol=1
-    Fl1=flow(P_in,P_out,FR1,rou,Visc,di,l_s)
-    
-    dift=Fl1-Dpr
-    #########################################################
+    FR=1000
     FR0=0.5*FR
     FR1=2*FR
     crf=8
@@ -195,7 +183,15 @@ if check_password():
     df['P(bar)']=PF
     df['Elem DP (m)']=l_s
 
-                    
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
+    fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
+    fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
+    fig.update_xaxes(title_text="Elements")
+
+    st.plotly_chart(fig, use_container_width=True)
+    
     vm=df['Velocity(m/s)'].max()
 
     if vm>=critical_speed:
