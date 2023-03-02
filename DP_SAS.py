@@ -126,7 +126,6 @@ if check_password():
         dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s)
         
         
-    st.write('Flow rate calculaded =:', FR, 'kg/h.')
     FR0=0.5*FR
     FR1=2*FR
     
