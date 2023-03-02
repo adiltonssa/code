@@ -171,7 +171,7 @@ if check_password():
     ########################################################
     for i in range(len(l_s)):
 
-        rho=Dens*(P_out/P_in)**2
+        rho=Dens*(Pf/P_in)**2
         sp=4*Ft/(rho*np.pi*(0.001*di)**2)/3600
         Re=rho*sp*(di/1000)/(Visc/1000)
      
@@ -219,7 +219,7 @@ if check_password():
         else:
             nam2='Elem DP (m)'   
     
-    st.table(df['Velocity(m/s)'])        
+        
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
     fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
