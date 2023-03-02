@@ -102,7 +102,7 @@ if check_password():
     di=st.sidebar.number_input('Diameter (mm): ',value=100.0,min_value=1.0, max_value=200.0,step=0.1)
 
     critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
-    Dpr=P_out-P_in
+    Dpr=P_in-P_out
     
     #########################################################
     l_s=[]
