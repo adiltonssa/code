@@ -114,6 +114,7 @@ if check_password():
 
     #########################################################
     FR=1000
+        
     crf=8
     inter=0
     tol=1
@@ -123,6 +124,7 @@ if check_password():
     while dift<0:
         FR=2*FR
         dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s)
+        
     st.write('Flow rate calculaded =:', FR, 'kg/h.')
     FR0=0.5*FR
     FR1=2*FR
