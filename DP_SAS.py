@@ -121,7 +121,7 @@ if check_password():
     Fl1=flow(P_in,P_out,FR,rou,Visc,di,l_s)
     dift=Dpr-Fl1
 
-    while dift<0:
+    while dift>0:
         FR=2*FR
         dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s)
         
