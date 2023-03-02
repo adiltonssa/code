@@ -114,8 +114,6 @@ if check_password():
 
     #########################################################
     FR=1000
-    FR0=0.5*FR
-    FR1=2*FR
     crf=8
     inter=0
     tol=1
@@ -124,8 +122,11 @@ if check_password():
 
     while dift<0:
         FR=2*FR
-        dift=Fl1-Dpr
-
+        dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s)
+    
+    FR0=0.5*FR
+    FR1=2*FR
+    
     while  crf>=tol | inter<100:
 
         FRm=(FR1+FR0)*0.5
