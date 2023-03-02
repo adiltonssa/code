@@ -120,7 +120,7 @@ if check_password():
     tol=1
     Fl1=flow(P_in,P_out,FR,rou,Visc,di,l_s)
     dift=Dpr-Fl1
-    print(dift)
+    st.write('dift =:', dift)
 
     while dift>0:
         FR=2*FR
