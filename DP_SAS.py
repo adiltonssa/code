@@ -212,7 +212,6 @@ if check_password():
             nam2='Elem DP (m)'   
             
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-
     fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
     fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
     fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
