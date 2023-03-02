@@ -47,10 +47,7 @@ def check_password():
 
 def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
         Pf=P_inlet
-        DP_g=[]
-        sp_g=[]
         DP_B=[]
-        PF=[]
         for i in range(len(l_s)):
 
             rho=Dens*(Pf/P_inlet)**2
