@@ -180,11 +180,11 @@ if check_password():
         Re=rho*sp*(di/1000)/(Visc/1000)
         
         res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
-        Pf=(Pf-res*rho*9.81*0.000001)
+        Pf=(Pf-res*rho*9.81*0.00001)
         rho=Dens*(Pf/P_in)**2
     
         DP_g.append(res)
-        DP_B.append(res*rho*9.81*0.000001)
+        DP_B.append(res*rho*9.81*0.00001)
         sp_g.append(sp)
         PF.append(Pf)
         ########################################################
