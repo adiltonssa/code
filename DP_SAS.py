@@ -53,14 +53,15 @@ def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
         sp_g=[]
         DP_B=[]
         PF=[]
+        rho=Dens*(Pf/P_inlet)**2
         for i in range(len(l_s)):
 
-            rho=Dens*(Pf/P_inlet)**2
             sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
             Re=rho*sp*(di/1000)/(Visc/1000)
-              
+            P_inlet=Pf  
             res=Df2(sp,l_s[0][i],Visc,di,rou,Re)
-        
+            Pf=(Pf-res*rho*9.81*0.00001)
+            rho=Dens*(Pf/P_inlet)**2
             DP_B.append(res*rho*9.81*0.00001)
         
         return sum(DP_B)
@@ -170,18 +171,20 @@ if check_password():
     PF=[]
 
     Pf=P_in
+    rho=Dens*(Pf/P_in)**2
     ########################################################
     for i in range(len(l_s)):
 
-        rho=Dens*(Pf/P_in)**2
+        
         sp=4*Ft/(rho*np.pi*(0.001*di)**2)/3600
         Re=rho*sp*(di/1000)/(Visc/1000)
         P_in=Pf
         res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
-        Pf=(Pf-res*rho*9.81*0.00001)
+        Pf=(Pf-res*rho*9.81*0.000001)
+        rho=Dens*(Pf/P_in)**2
     
         DP_g.append(res)
-        DP_B.append(res*rho*9.81*0.00001)
+        DP_B.append(res*rho*9.81*0.000001)
         sp_g.append(sp)
         PF.append(Pf)
         ########################################################
