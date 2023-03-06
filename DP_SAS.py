@@ -176,7 +176,7 @@ if check_password():
         rho=Dens*(Pf/P_in)**2
         sp=4*Ft/(rho*np.pi*(0.001*di)**2)/3600
         Re=rho*sp*(di/1000)/(Visc/1000)
-     
+        P_in=Pf
         res=Df2(sp,l_s[0][i],Visc,di,rou,Re)  
         Pf=(Pf-res*rho*9.81*0.00001)
     
