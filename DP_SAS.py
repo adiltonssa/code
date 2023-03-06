@@ -47,13 +47,14 @@ def check_password():
         # Password correct.
         return True
 
-def flow(P_inlet,Pf,FR,rou,Visc,di,l_s):
+def flow(P_inlet,Pf,FR,rou,Visc,di,l_s,Dens):
         Pf=P_inlet
         #DP_g=[]
         #sp_g=[]
         DP_B=[]
         #PF=[]
         rho=Dens*(Pf/P_inlet)**2
+        
         for i in range(len(l_s)):
 
             sp=4*FR/(rho*np.pi*(0.001*di)**2)/3600
@@ -123,12 +124,12 @@ if check_password():
     crf=8
     inter=0
     tol=1
-    Fl1=flow(P_in,P_out,FR,rou,Visc,di,l_s)
+    Fl1=flow(P_in,P_out,FR,rou,Visc,di,l_s,Dens)
     dift=Dpr-Fl1
 
     while dift>0:
         FR=2*FR
-        dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s)
+        dift=Dpr-flow(P_in,P_out,2*FR,rou,Visc,di,l_s,Dens)
         
         
     FR0=0.5*FR
@@ -138,7 +139,7 @@ if check_password():
 
         FRm=(FR1+FR0)*0.5
     
-        Flm=flow(P_in,P_out,FRm,rou,Visc,di,l_s)
+        Flm=flow(P_in,P_out,FRm,rou,Visc,di,l_s,Dens)
         crm=Dpr-Flm
    
         cr=Dpr-Fl1
