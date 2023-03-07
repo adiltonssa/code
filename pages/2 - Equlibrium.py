@@ -35,6 +35,15 @@ di=st.sidebar.number_input('Diameter (mm): ',value=100.0,min_value=1.0, max_valu
 
 critical_speed=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
 
+    #########################################################
+l_s=[]
+for i in range(Elem-1):
+    l_s.append(((Elem-(i+1))*2-1)/(pow(Elem-1,2))*l)
+    #########################################################
+    
+l_s=pd.DataFrame(l_s) 
+
+
 #Functions
 
 def flow(P_inlet,FR,rou,Visc,di,l_s,Dens):
