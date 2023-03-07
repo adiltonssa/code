@@ -70,7 +70,18 @@ def flow(P_inlet,FR,rou,Visc,di,l_s,Dens):
         #PF.append(Pf)
         
     return sum(DP_B)
-
+def Df2(sp,ls,vis,di,rou,Re):
+    
+    def diff(pc):
+        diff=100000*((0.0625/((np.log10(rou/di/3.7+5.74/(Re**0.9))))**2)-(pc*(di/1000)*9.81/(2*ls*(sp**2))))
+        return diff
+    
+    pc = spo.root(diff,0)
+    DP_f=pc.x
+    
+    return float(DP_f)
+    #########################################################    
+      
 def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
     
     Dpr=P_i-P_o
