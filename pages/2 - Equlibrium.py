@@ -316,12 +316,12 @@ fig.update_xaxes(title_text="Elements")
 st.plotly_chart(fig, use_container_width=True)
 
 
-col1, col2 = st.columns(2)
-with col1:
+col11, col12 = st.columns(2)
+with col11:
     VAR_01=st.selectbox('Select the variable 1:', st.selectbox('Select the variable 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
-with col2:
+with col12:
     VAR_02=st.selectbox('Select the variable 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)']))
