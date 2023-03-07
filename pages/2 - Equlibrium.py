@@ -11,7 +11,7 @@ import streamlit as st
 from PIL import Image
 
 
-    st.set_page_config(
+st.set_page_config(
         page_title="Equlibrium",
         page_icon="🛰️",
         )
