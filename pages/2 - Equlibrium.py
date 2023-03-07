@@ -265,11 +265,11 @@ df_n.index=df_n.index*DT
 
 col1, col2 = st.columns(2)
 with col1:
-    VAR1=st.selectbox('Select the variable 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR1=st.selectbox('Select the variable 1 - Fig 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 with col2:
-    VAR2=st.selectbox('Select the variable 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR2=st.selectbox('Select the variable 2 - Fig 1:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 
@@ -333,7 +333,7 @@ fig = make_subplots(specs=[[{"secondary_y": True}]])
 fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=NAM1),secondary_y=False)
 fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=NAM2),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Flow Rate - High Pressure - Slurry INEOS")
-fig.update_xaxes(title_text="Elements")
+fig.update_xaxes(title_text="Time(s)")
 
 st.plotly_chart(fig, use_container_width=True)
 
@@ -341,11 +341,11 @@ st.plotly_chart(fig, use_container_width=True)
 col11, col12 = st.columns(2)
 
 with col11:
-    VAR_01=st.selectbox('Select the variable 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 with col12:
-    VAR_02=st.selectbox('Select the variable 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR_02=st.selectbox('Select the variable 2 - Fig 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 
@@ -410,6 +410,6 @@ fig_p = make_subplots(specs=[[{"secondary_y": True}]])
 fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=NAM_01),secondary_y=False)
 fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=NAM_02),secondary_y=True)
 fig_p.update_layout(height=600, width=800, title_text="Flow Rate - Low Pressure - Slurry INEOS")
-fig_p.update_xaxes(title_text="Elements")
+fig_p.update_xaxes(title_text="Time (s)")
 
 st.plotly_chart(fig_p, use_container_width=True)
