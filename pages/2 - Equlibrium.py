@@ -40,18 +40,18 @@ st.sidebar.header('Pipe characteristics:')
 rou=st.sidebar.number_input('Roughness (mm): ',value=0.045,min_value=0.010, max_value=5.000,step=0.001,format="%.3f")
 di=st.sidebar.number_input('Diameter (mm): ',value=100.0,min_value=1.0, max_value=200.0,step=0.1)
 
-cst_H = st.sidebar.checkbox('HP constant')
-cst_L = st.sidebar.checkbox('LP constant')
+#cst_H = st.sidebar.checkbox('HP constant')
+#cst_L = st.sidebar.checkbox('LP constant')
 
-if cst_H:
-    C_H=0
-else:
-     C_H=1
+#if cst_H:
+#    C_H=0
+#else:
+#     C_H=1
 
-if cst_L:
-    C_L=0
-else:
-     C_L=1
+#if cst_L:
+#    C_L=0
+#else:
+#     C_L=1
 
 
 cs=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
@@ -239,8 +239,8 @@ while dif_p>-1 | inter<100:
     
     F_out=flowrate(Pi,pi,rou,Visc,di,l_s,D,cs)
 
-    O=equil_H(C_H,MI,DT,V,k,pi,Pi,D,F_out)
-    o=equil_L(C_L,mi,DT,V,k,pi,Pi,rho_i,F_out)
+    O=equil_H(1,MI,DT,V,k,pi,Pi,D,F_out)
+    o=equil_L(1,mi,DT,V,k,pi,Pi,rho_i,F_out)
 
     Pi=O[4]
     pi=o[4]
