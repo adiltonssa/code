@@ -44,14 +44,14 @@ cst_H = st.sidebar.checkbox('HP constant')
 cst_L = st.sidebar.checkbox('LP constant')
 
 if cst_H:
-    C_H=1
+    C_H=0
 else:
-     C_H=0
+     C_H=1
 
 if cst_L:
-    C_L=1
+    C_L=0
 else:
-     C_L=0
+     C_L=1
 
 
 cs=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
