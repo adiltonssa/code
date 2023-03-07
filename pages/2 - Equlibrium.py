@@ -325,7 +325,7 @@ with col11:
 with col12:
     VAR_02=st.selectbox('Select the variable 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)']))
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 
     if VAR_01=='LP (bar)':
         NAM_01='LP (bar)'
