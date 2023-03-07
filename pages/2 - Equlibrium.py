@@ -18,6 +18,7 @@ st.title('Flow Rate - Slurry Process INEOS')
 
 l=st.slider('Equiv. length (m): ',1,50,11)
 Elem=st.slider('Elements: ',1, 100,25)
+V=st.slider('Volume (m3): ',1, 50,5)
    
 st.sidebar.header('Process inputs:')
 Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
