@@ -10,6 +10,12 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 
+
+    st.set_page_config(
+        page_title="Equlibrium",
+        page_icon="🛰️",
+        )
+
 image = Image.open('201103_INEOS_POETS_V_CMYK.jpg')
 st.sidebar.image(image)
 
