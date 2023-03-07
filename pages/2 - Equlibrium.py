@@ -45,8 +45,13 @@ cst_L = st.sidebar.checkbox('LP constant')
 
 if cst_H:
     C_H=1
+else:
+     C_H=0
+
 if cst_L:
     C_L=1
+else:
+     C_L=0
 
 
 cs=pow(k*8.3143*(Temp+273.15)/(MW/1000),0.5)
