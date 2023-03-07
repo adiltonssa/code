@@ -28,6 +28,7 @@ pi= st.sidebar.number_input('Low Pressure (bara):',value=1.35,min_value=0.1,step
 Visc= st.sidebar.number_input('Viscosity (cP): ',value=0.0010,min_value=0.0001, max_value=5.000,step=0.001,format="%.4f")
 MW= st.sidebar.number_input('Molecular weight (g/mol): ',value=58.5,min_value=10.0, max_value=500.0,step=0.1)
 k=st.sidebar.number_input('Compressibility factor: ',value=1.15)
+DT=st.sidebar.number_input('Tempo (s): ',value=0.6,,min_value=0.1, max_value=10)
 
 st.sidebar.header('Pipe characteristics:')
 rou=st.sidebar.number_input('Roughness (mm): ',value=0.045,min_value=0.010, max_value=5.000,step=0.001,format="%.3f")
