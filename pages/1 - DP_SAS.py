@@ -12,6 +12,12 @@ from PIL import Image
 
 
 
+st.set_page_config(
+        page_title="DP - SAS",
+        page_icon="📈",
+        )
+
+
 def flow(P_inlet,Pf,FR,rou,Visc,di,l_s,Dens):
         Pf=P_inlet
         #DP_g=[]
