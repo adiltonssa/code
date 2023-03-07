@@ -75,7 +75,7 @@ def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
     
     Dpr=P_i-P_o
     FR=1000
-    Fl1=flow(P_in,FR,rou,Visc,di,l_s,20.6)
+    Fl1=flow(P_i,FR,rou,Visc,di,l_s,20.6)
     dift=Dpr-Fl1
     crf=10
     inter=0
