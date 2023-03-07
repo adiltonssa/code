@@ -58,11 +58,3 @@ if check_password():
     st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
 
 else:
-    
-
-
-# In[ ]:
-
-
-
-
