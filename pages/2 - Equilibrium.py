@@ -351,3 +351,38 @@ fig_p.update_yaxes(title_text='Density (kg/m3)',title_font_size=20,secondary_y=T
 fig_p.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
 
 st.plotly_chart(fig_p, use_container_width=True)
+
+
+
+col1, col2,col3 = st.columns(3)
+with col1:
+    VAR11=st.selectbox('Select the variable 1 - Fig 3:', ['LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)',
+                                                          'HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
+with col2:
+    VAR21=st.selectbox('Select the variable 2 - Fig 3:', ['HP - Mass initial (kg)','LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)',
+                                                          'HP - Add mass (kg)','HP - Mass Final (kg)'])
+with col3:
+    VAR31=st.selectbox('Select the variable 3 - Fig 3:', ['HP - Add mass (kg)','LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)',
+                                                          'HP - Mass initial (kg)','HP - Mass Final (kg)']) 
+
+fig_p1 = make_subplots(specs=[[{"secondary_y": True}]])
+
+fig_p1.add_trace(go.Scatter(y=df_n[VAR11],x=df_n.index,name=VAR11,line=dict(color='firebrick', width=4)))
+fig_p1.add_trace(go.Scatter(y=df_n[VAR21],x=df_n.index,name=VAR21,line=dict(color='royalblue', width=4)))
+fig_p1.add_trace(go.Scatter(y=df_n[VAR31],x=df_n.index,name=VAR31,line=dict(color='green', width=4)))
+fig_p1.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Speed (m/s) x Density (kg/m3) - Slurry INEOS")
+fig_p1.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
+fig_p1.update_yaxes(title_text='Mass (kg)',title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig_p1.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
+
+st.plotly_chart(fig_p1, use_container_width=True)
+        
+        
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+csv = convert_df(df_n)
+
+st.download_button(label="Download result as CSV",data=csv,
+    file_name='results.csv',mime='text/csv',)
