@@ -385,7 +385,7 @@ opt=st.radio("Select the option: 👉",
         options=['None',"Table", "Download"],)
         
 if opt=='Table':
-        st.table(df_n.style.format("{:.2}"))
+        st.table(df_n.style.format("{:.4}"))
         
 elif opt=="Download":
         def convert_df(df):
