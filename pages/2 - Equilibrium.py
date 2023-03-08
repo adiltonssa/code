@@ -308,7 +308,7 @@ fig = make_subplots(specs=[[{"secondary_y": True}]])
 fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4,
                               dash='dash')),secondary_y=False)
 fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=VAR2,line=dict(color='royalblue', width=4,
-                              dash='dash')),secondary_y=False)
+                              dash='dash')),secondary_y=True)
 fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='green', width=4,
                               dash='dash')),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Flow Rate Graph 1 - Low Pressure - Slurry INEOS")
@@ -337,9 +337,12 @@ with col13:
     
         
 fig_p = make_subplots(specs=[[{"secondary_y": True}]])
+
 fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4,
                               dash='dash'))),secondary_y=False)
 fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4,
+                              dash='dash'))),secondary_y=True)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='royalblue', width=4,
                               dash='dash'))),secondary_y=True)
 fig_p.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Low Pressure - Slurry INEOS")
 fig_p.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
