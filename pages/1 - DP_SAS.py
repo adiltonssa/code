@@ -199,8 +199,8 @@ with col2:
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df[var1],x=df.index,name=nam1),secondary_y=False)
-fig.add_trace(go.Scatter(y=df[var2],x=df.index,name=nam2),secondary_y=True)
+fig.add_trace(go.Scatter(y=df[var1],x=l_s,name=nam1),secondary_y=False)
+fig.add_trace(go.Scatter(y=df[var2],x=l_s,name=nam2),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
 fig.update_xaxes(title_text="Elements")
 
