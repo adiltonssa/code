@@ -354,7 +354,7 @@ st.subheader('Results:📈')
 
 
 opt=st.radio("Select the option: 👉",
-        options=["Table", "Download"],)
+        options=["Download","Table"],)
         
 if opt=='Table':
         st.table(df_n.style.format("{:.2f}"))
