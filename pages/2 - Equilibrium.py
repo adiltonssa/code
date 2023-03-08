@@ -395,4 +395,5 @@ elif opt=="Download":
 
         st.download_button(label="Download result as CSV",data=csv,file_name='results.csv',mime='text/csv')
         
- else:       
+ else:
+        
