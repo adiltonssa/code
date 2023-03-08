@@ -312,8 +312,8 @@ fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='gr
                               dash='dash')),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Flow Rate Graph 1 - Low Pressure - Slurry INEOS")
 fig.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
-fig.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
-fig.update_yaxes(title_text=var2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig.update_yaxes(title_text=VAR1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig.update_yaxes(title_text=VAR2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
 fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
 
 st.plotly_chart(fig, use_container_width=True)
@@ -342,8 +342,8 @@ fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(col
 fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='royalblue', width=4,dash='dash')),secondary_y=True)
 fig_p.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Low Pressure - Slurry INEOS")
 fig_p.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
-fig_p.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
-fig_p.update_yaxes(title_text=var2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig_p.update_yaxes(title_text=VAR_01,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig_p.update_yaxes(title_text=VAR_02,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
 fig_p.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
 
 st.plotly_chart(fig_p, use_container_width=True)
