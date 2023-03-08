@@ -289,7 +289,7 @@ df_n['Speed (m/s)']=sp
 
 df_n.index=df_n.index*DT
 
-col1, col2,col3 = st.columns(2)
+col1, col2,col3 = st.columns(3)
 with col1:
     VAR1=st.selectbox('Select the variable 1 - Fig 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
@@ -319,7 +319,7 @@ fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',
 st.plotly_chart(fig, use_container_width=True)
 
 
-col11, col12,col13 = st.columns(2)
+col11, col12,col13 = st.columns(3)
 
 with col11:
     VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Speed (m/s)','Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
