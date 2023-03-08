@@ -368,3 +368,4 @@ else:
 
         st.download_button(label="Download result as CSV",data=csv,file_name='results.csv',mime='text/csv')
           
+st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
