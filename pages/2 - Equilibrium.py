@@ -289,27 +289,29 @@ df_n['Speed (m/s)']=sp
 
 df_n.index=df_n.index*DT
 
-col1, col2,col3 = st.columns(3)
-with col1:
-    VAR1=st.selectbox('Select the variable 1 - Fig 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
-with col2:
-    VAR2=st.selectbox('Select the variable 2 - Fig 1:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
-with col3:
-    VAR3=st.selectbox('Select the variable 3 - Fig 1:', ['HP (bar)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+#col1, col2,col3 = st.columns(3)
+#with col1:
+    #VAR1=st.selectbox('Select the variable 1 - Fig 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+#with col2:
+    #VAR2=st.selectbox('Select the variable 2 - Fig 1:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+#with col3:
+    #VAR3=st.selectbox('Select the variable 3 - Fig 1:', ['HP (bar)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP - rho (kg/m3)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
     
-        
+VAR1='Flow Rate (kg/h)'
+VAR2='LP (bar)'
+VAR3='HP (bar)'
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4,dash='dash')),secondary_y=False)
+fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4)),secondary_y=False)
 fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=VAR2,line=dict(color='royalblue', width=4,
-                              dash='dash')),secondary_y=True)
-fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='green', width=4,
-                              dash='dash')),secondary_y=True)
+                              )),secondary_y=True)
+fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='green', width=4
+                              )),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Flow Rate Graph 1 - Low Pressure - Slurry INEOS")
 fig.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
 fig.update_yaxes(title_text=VAR1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
@@ -319,27 +321,29 @@ fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',
 st.plotly_chart(fig, use_container_width=True)
 
 
-col11, col12,col13 = st.columns(3)
+#col11, col12,col13 = st.columns(3)
 
-with col11:
-    VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Speed (m/s)','Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
-with col12:
-    VAR_02=st.selectbox('Select the variable 2 - Fig 2:', ['HP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
-with col13:
-    VAR_03=st.selectbox('Select the variable 2 - Fig 2:', ['LP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - New P (bar)'
-        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
-    
+#with col11:
+    #VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Speed (m/s)','Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
+#with col12:
+    #VAR_02=st.selectbox('Select the variable 2 - Fig 2:', ['HP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+#with col13:
+    #VAR_03=st.selectbox('Select the variable 2 - Fig 2:', ['LP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - New P (bar)'
+        #'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
+        #'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+VAR_01='Speed (m/s)'
+VAR_02='HP - rho (kg/m3)'
+VAR_03='LP - rho (kg/m3)'    
 
 fig_p = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4,dash='dash')),secondary_y=False)
-fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4,dash='dash')),secondary_y=True)
-fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='royalblue', width=4,dash='dash')),secondary_y=True)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4)),secondary_y=False)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4)),secondary_y=True)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='green', width=4)),secondary_y=True)
 fig_p.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Low Pressure - Slurry INEOS")
 fig_p.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
 fig_p.update_yaxes(title_text=VAR_01,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
