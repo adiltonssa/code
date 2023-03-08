@@ -383,7 +383,7 @@ st.write('Results:')
 opt=st.radio("Select the option: 👉",
         options=['None',"Table", "Download", 'None'],)
         
-if opt=='Table:
+if opt=='Table':
         st.table(df_n)
         
 elif opt=="Download":
