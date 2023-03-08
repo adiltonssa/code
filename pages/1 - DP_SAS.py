@@ -62,7 +62,7 @@ st.sidebar.image(image)
 st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
 
-l=st.slider('Equiv. length (m): ',1,50,11)
+l=st.slider('Equivalent length (m): ',1,50,11)
 Elem=25
    
 st.sidebar.header('Process inputs:')
@@ -127,14 +127,12 @@ while  crf>=tol | inter<100:
     
 col1, col2 = st.columns(2)
 with col1:
-    st.metric(label="Flow rate calculaded (Kg/h) =", value=round(FRm,2))
+    st.metric(label="Flow rate calculated (Kg/h) =", value=round(FRm,2))
 with col2:
     st.metric(label="Differencial Pressure (bar) =", value=round(-Dpr,3))
              
     ########################################################    
         
-    #st.write('Flow rate calculaded =:', FR1, 'kg/h.')
-    #st.write('Differencial Pressure =:', -Dpr, 'Bar.')
     
 Ft=FRm
 
