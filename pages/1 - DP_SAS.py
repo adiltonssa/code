@@ -88,7 +88,7 @@ for i in range(Elem-1):
     #########################################################
     
 l_s=pd.DataFrame(l_s) 
-
+l_s['acum']=l_s.cumsum()
     #########################################################
 FR=1000
         
@@ -199,10 +199,10 @@ with col2:
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df[var1],x=l_s[0],name=nam1),secondary_y=False)
-fig.add_trace(go.Scatter(y=df[var2],x=l_s[0],name=nam2),secondary_y=True)
+fig.add_trace(go.Scatter(y=df[var1],x=l_s['acum'],name=nam1),secondary_y=False)
+fig.add_trace(go.Scatter(y=df[var2],x=l_s['acum'],name=nam2),secondary_y=True)
 fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
-fig.update_xaxes(title_text="Elements")
+fig.update_xaxes(title_text="Equivalent length")
 
 st.plotly_chart(fig, use_container_width=True)
     
