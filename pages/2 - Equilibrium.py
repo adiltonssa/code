@@ -305,8 +305,7 @@ with col3:
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4,
-                              dash='dash')),secondary_y=False)
+fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4,dash='dash')),secondary_y=False)
 fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=VAR2,line=dict(color='royalblue', width=4,
                               dash='dash')),secondary_y=True)
 fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='green', width=4,
@@ -335,15 +334,12 @@ with col13:
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
     
-        
+
 fig_p = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4,
-                              dash='dash'))),secondary_y=False)
-fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4,
-                              dash='dash'))),secondary_y=True)
-fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='royalblue', width=4,
-                              dash='dash'))),secondary_y=True)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4,dash='dash')),secondary_y=False)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4,dash='dash')),secondary_y=True)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_03],x=df_n.index,name=VAR_03,line=dict(color='royalblue', width=4,dash='dash')),secondary_y=True)
 fig_p.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Low Pressure - Slurry INEOS")
 fig_p.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
 fig_p.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
