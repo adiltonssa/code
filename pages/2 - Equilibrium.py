@@ -22,8 +22,8 @@ st.sidebar.image(image)
 st.title('Flow Rate - Slurry Process INEOS')
 
 
-l=st.slider('Equiv. length (m): ',1,50,11)
-Elem=st.slider('Elements: ',1, 100,25)
+l=st.slider('Equivalent length (m): ',1,50,11)
+Elem=25
 V=st.slider('Volume (m3): ',1, 50,5)
    
 st.sidebar.header('Process inputs:')
@@ -73,6 +73,7 @@ def flow(P_inlet,FR,rou,Visc,di,l_s,Dens):
     sp_g=[]
     DP_B=[]
     PF=[]
+    sp_g=[]
     rho=Dens*(Pf/P_inlet)**2
     
     for i in range(len(l_s)):
@@ -87,10 +88,11 @@ def flow(P_inlet,FR,rou,Visc,di,l_s,Dens):
         #print(Pf)
         #print(rho)
         #print(sp)
-        #sp_g.append(sp)
+        sp_g.append(sp)
         #PF.append(Pf)
         
-    return sum(DP_B)
+    return sum(DP_B),max(sp_g)
+
 def Df2(sp,ls,vis,di,rou,Re):
     
     def diff(pc):
@@ -107,7 +109,7 @@ def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
     
     Dpr=P_i-P_o
     FR=1000
-    Fl1=flow(P_i,FR,rou,Visc,di,l_s,20.6)
+    Fl1=flow(P_i,FR,rou,Visc,di,l_s,Dens)[0]
     dift=Dpr-Fl1
     crf=10
     inter=0
@@ -116,7 +118,7 @@ def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
     #Find the speed to reach the DP defined: 
     while dift>0:
         FR=2*FR
-        dift=Dpr-flow(P_i,FR,rou,Visc,di,l_s,Dens)
+        dift=Dpr-flow(P_i,FR,rou,Visc,di,l_s,Dens)[0]
     
     #Speed> Critical speed - Find flow to garantee the seep lower than Critical speed.
     if DP_f(P_i,P_o,FR,rou,Visc,di,l_s,Dens)>cs:      
@@ -146,7 +148,7 @@ def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
 
             FR=(FR1+FR0)*0.5
     
-            Flm=flow(P_i,FR,rou,Visc,di,l_s,Dens)
+            Flm=flow(P_i,FR,rou,Visc,di,l_s,Dens)[0]
             crm=Dpr-Flm
 
             if crm<0:
@@ -158,9 +160,10 @@ def flowrate(P_i,P_o,rou,Visc,di,l_s,Dens,cs):
     
             inter=inter+1
             crf=10000*(FR1-FR0)/FR1            
-            
         
-    return FR
+        vm=flow(P_i,FR,rou,Visc,di,l_s,Dens)[1]     
+        
+    return FR,vm
 
 def DP_f(P_inlet,Pf,FR,rou,Visc,di,l_s,Dens):
     
@@ -225,6 +228,7 @@ m_ad=[]
 n_M=[]
 p_n=[]
 FL=[]
+sp=[]
 
 dif_p=1
 inter=0
@@ -237,8 +241,9 @@ MI=Dens*V
 while dif_p>-1 | inter<100:
     
     
-    F_out=flowrate(Pi,pi,rou,Visc,di,l_s,D,cs)
-
+    F_out=flowrate(Pi,pi,rou,Visc,di,l_s,D,cs)[0]
+    sp_in=flowrate(Pi,pi,rou,Visc,di,l_s,D,cs)[1] 
+        
     O=equil_H(1,MI,DT,V,k,pi,Pi,D,F_out)
     o=equil_L(1,mi,DT,V,k,pi,Pi,rho_i,F_out)
 
@@ -264,7 +269,7 @@ while dif_p>-1 | inter<100:
     m_ad.append(o[2])
     n_M.append(o[3])
     p_n.append(pi)
-
+    sp.append(sp_in)
     
 df_n=pd.DataFrame()
 df_n['Flow Rate (kg/h)']=FL
@@ -280,156 +285,66 @@ df_n['HP - New P (bar)']=P_N
 df_n['HP - Mass initial (kg)']=M_I
 df_n['HP - Add mass (kg)']=M_AD
 df_n['HP - Mass Final (kg)']=N_M
+df_n['Speed (m/s)']=sp
 
 df_n.index=df_n.index*DT
 
-col1, col2 = st.columns(2)
+col1, col2,col3 = st.columns(2)
 with col1:
     VAR1=st.selectbox('Select the variable 1 - Fig 1:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
 with col2:
     VAR2=st.selectbox('Select the variable 2 - Fig 1:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
-
-    
-    if VAR1=='LP (bar)':
-        NAM1='LP (bar)'
-    elif VAR1=='Flow Rate (kg/h)':
-        NAM1='Flow Rate (kg/h)'
-    elif VAR1=='LP - rho (kg/m3)':
-        NAM1='LP - rho (kg/m3)'
-    elif VAR1=='LP - New P (bar)':
-        NAM1='LP - New P (bar)'
-    elif VAR1=='LP - Mass initial (kg)':
-        NAM1='LP - Mass initial (kg)'
-    elif VAR1=='LP - Add mass (kg)':
-        NAM1='LP - Add mass (kg)'
-    elif VAR1=='LP - Mass Final (kg)':
-        NAM1='LP - Mass Final (kg)'
-    elif VAR1=='HP (bar)':
-        NAM1='HP (bar)'
-    elif VAR1=='HP - rho (kg/m3)':
-        NAM1='HP - rho (kg/m3)'
-    elif VAR1=='HP - New P (bar)':
-        NAM1='HP - New P (bar)'
-    elif VAR1=='HP - Mass initial (kg)':
-        NAM1='HP - Mass initial (kg)'
-    elif VAR1=='HP - Add mass (kg)':
-        NAM1='HP - Add mass (kg)'       
-    else:
-        NAM1='HP - Mass Final (kg)'
-
-    if VAR2=='LP (bar)':
-        NAM2='LP (bar)'
-    elif VAR2=='Flow Rate (kg/h)':
-        NAM2='Flow Rate (kg/h)'
-    elif VAR2=='LP - rho (kg/m3)':
-        NAM2='LP - rho (kg/m3)'
-    elif VAR2=='LP - New P (bar)':
-        NAM2='LP - New P (bar)'
-    elif VAR2=='LP - Mass initial (kg)':
-        NAM2='LP - Mass initial (kg)'
-    elif VAR2=='LP - Add mass (kg)':
-        NAM2='LP - Add mass (kg)'
-    elif VAR2=='LP - Mass Final (kg)':
-        NAM2='LP - Mass Final (kg)'
-    elif VAR2=='HP (bar)':
-        NAM2='HP (bar)'
-    elif VAR2=='HP - rho (kg/m3)':
-        NAM1='HP - rho (kg/m3)'
-    elif VAR2=='HP - New P (bar)':
-        NAM2='HP - New P (bar)'
-    elif VAR2=='HP - Mass initial (kg)':
-        NAM2='HP - Mass initial (kg)'
-    elif VAR2=='HP - Add mass (kg)':
-        NAM2='HP - Add mass (kg)'       
-    else:
-        NAM2='HP - Mass Final (kg)'  
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+with col3:
+    VAR3=st.selectbox('Select the variable 3 - Fig 1:', ['HP (bar)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP - rho (kg/m3)',
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=NAM1),secondary_y=False)
-fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=NAM2),secondary_y=True)
-fig.update_layout(height=600, width=800, title_text="Flow Rate - High Pressure - Slurry INEOS")
-fig.update_xaxes(title_text="Time(s)")
+fig.add_trace(go.Scatter(y=df_n[VAR1],x=df_n.index,name=VAR1,line=dict(color='firebrick', width=4,
+                              dash='dash')),secondary_y=False)
+fig.add_trace(go.Scatter(y=df_n[VAR2],x=df_n.index,name=VAR2,line=dict(color='royalblue', width=4,
+                              dash='dash')),secondary_y=False)
+fig.add_trace(go.Scatter(y=df_n[VAR3],x=df_n.index,name=VAR3,line=dict(color='green', width=4,
+                              dash='dash')),secondary_y=True)
+fig.update_layout(height=600, width=800, title_text="Flow Rate Graph 1 - Low Pressure - Slurry INEOS")
+fig.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
+fig.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig.update_yaxes(title_text=var2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
 
 st.plotly_chart(fig, use_container_width=True)
 
 
-col11, col12 = st.columns(2)
+col11, col12,col13 = st.columns(2)
 
 with col11:
-    VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR_01=st.selectbox('Select the variable 1 - Fig 2:', ['Speed (m/s)','Flow Rate (kg/h)','LP (bar)','LP - rho (kg/m3)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
         'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
 with col12:
-    VAR_02=st.selectbox('Select the variable 2 - Fig 2:', ['LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+    VAR_02=st.selectbox('Select the variable 2 - Fig 2:', ['HP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - rho (kg/m3)','LP - New P (bar)'
+        'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)',
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
+with col13:
+    VAR_03=st.selectbox('Select the variable 2 - Fig 2:', ['LP - rho (kg/m3)','LP (bar)','Flow Rate (kg/h)','LP - New P (bar)'
         'LP - Mass initial (kg)', 'LP - Add mass (kg)','LP - Mass Final (kg)','HP (bar)','HP - rho (kg/m3)',
-        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)'])
-
-    if VAR_01=='LP (bar)':
-        NAM_01='LP (bar)'
-    elif VAR_01=='Flow Rate (kg/h)':
-        NAM_01='Flow Rate (kg/h)'
-    elif VAR_01=='LP - rho (kg/m3)':
-        NAM_01='LP - rho (kg/m3)'
-    elif VAR_01=='LP - New P (bar)':
-        NAM_01='LP - New P (bar)'
-    elif VAR_01=='LP - Mass initial (kg)':
-        NAM_01='LP - Mass initial (kg)'
-    elif VAR_01=='LP - Add mass (kg)':
-        NAM_01='LP - Add mass (kg)'
-    elif VAR_01=='LP - Mass Final (kg)':
-        NAM_01='LP - Mass Final (kg)'
-    elif VAR_01=='HP (bar)':
-        NAM_01='HP (bar)'
-    elif VAR_01=='HP - rho (kg/m3)':
-        NAM_01='HP - rho (kg/m3)'
-    elif VAR_01=='HP - New P (bar)':
-        NAM_01='HP - New P (bar)'
-    elif VAR_01=='HP - Mass initial (kg)':
-        NAM_01='HP - Mass initial (kg)'
-    elif VAR_01=='HP - Add mass (kg)':
-        NAM_01='HP - Add mass (kg)'       
-    else:
-        NAM_01='HP - Mass Final (kg)'
-
-
-    if VAR_02=='LP (bar)':
-        NAM_02='LP (bar)'
-    elif VAR_02=='Flow Rate (kg/h)':
-        NAM_02='Flow Rate (kg/h)'
-    elif VAR_02=='LP - rho (kg/m3)':
-        NAM_02='LP - rho (kg/m3)'
-    elif VAR_02=='LP - New P (bar)':
-        NAM_02='LP - New P (bar)'
-    elif VAR_02=='LP - Mass initial (kg)':
-        NAM_02='LP - Mass initial (kg)'
-    elif VAR_02=='LP - Add mass (kg)':
-        NAM_02='LP - Add mass (kg)'
-    elif VAR_02=='LP - Mass Final (kg)':
-        NAM_02='LP - Mass Final (kg)'
-    elif VAR_02=='HP (bar)':
-        NAM_02='HP (bar)'
-    elif VAR_02=='HP - rho (kg/m3)':
-        NAM1='HP - rho (kg/m3)'
-    elif VAR_02=='HP - New P (bar)':
-        NAM_02='HP - New P (bar)'
-    elif VAR_02=='HP - Mass initial (kg)':
-        NAM_02='HP - Mass initial (kg)'
-    elif VAR_02=='HP - Add mass (kg)':
-        NAM_02='HP - Add mass (kg)'       
-    else:
-        NAM_02='HP - Mass Final (kg)'
-   
+        'HP - New P (bar)','HP - Mass initial (kg)','HP - Add mass (kg)','HP - Mass Final (kg)','Speed (m/s)'])
     
         
 fig_p = make_subplots(specs=[[{"secondary_y": True}]])
-fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=NAM_01),secondary_y=False)
-fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=NAM_02),secondary_y=True)
-fig_p.update_layout(height=600, width=800, title_text="Flow Rate - Low Pressure - Slurry INEOS")
-fig_p.update_xaxes(title_text="Time (s)")
+fig_p.add_trace(go.Scatter(y=df_n[VAR_01],x=df_n.index,name=VAR_01,line=dict(color='firebrick', width=4,
+                              dash='dash'))),secondary_y=False)
+fig_p.add_trace(go.Scatter(y=df_n[VAR_02],x=df_n.index,name=VAR_02,line=dict(color='royalblue', width=4,
+                              dash='dash'))),secondary_y=True)
+fig_p.update_layout(height=600, width=800, title_text="Flow Rate Graph 2- Low Pressure - Slurry INEOS")
+fig_p.update_xaxes(title_text='Time (s)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
+fig_p.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig_p.update_yaxes(title_text=var2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig_p.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.4,font=dict(size= 20)))
 
 st.plotly_chart(fig_p, use_container_width=True)
