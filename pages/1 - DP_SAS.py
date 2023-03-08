@@ -161,7 +161,7 @@ for i in range(len(l_s)):
         ########################################################
 df=pd.DataFrame()
 
-df['DP(Bar)']=DP_B
+df['DP(bar)']=DP_B
 df['DP(m)']=DP_g
 df['Velocity(m/s)']=sp_g
 df['P(bar)']=PF
@@ -204,7 +204,7 @@ opt=st.radio("Select the option: 👉",
         options=["Download","Table"],)
         
 if opt=='Table':
-        st.table(df.style.format("{:.2f}"))
+        st.table(df.style.format("{:.4f}"))
         
 else:
         def convert_df(df):
