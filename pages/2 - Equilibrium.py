@@ -377,12 +377,24 @@ fig_p1.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='cente
 
 st.plotly_chart(fig_p1, use_container_width=True)
         
+
+st.write('Results:')
+
+opt=st.radio("Select the option: 👉",
+        options=['None',"Table", "Download", 'None'],)
         
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
+if opt=='Table:
+        st.table(df_n)
+        
+elif opt=="Download":
+        def convert_df(df):
+    
+        return df.to_csv().encode('utf-8')
 
-csv = convert_df(df_n)
+        csv = convert_df(df_n)
 
-st.download_button(label="Download result as CSV",data=csv,
-    file_name='results.csv',mime='text/csv',)
+        st.download_button(label="Download result as CSV",data=csv,
+        file_name='results.csv',mime='text/csv',)
+        
+ else:
+        
