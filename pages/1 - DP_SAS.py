@@ -167,13 +167,13 @@ df['DP(Bar)']=DP_B
 df['DP(m)']=DP_g
 df['Velocity(m/s)']=sp_g
 df['P(bar)']=PF
-df['Elem DP (m)']=l_s
+
 
 col1, col2 = st.columns(2)
 with col1:
-    var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)','Elem DP (m)'])
+    var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)'])
 with col2:
-    var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)','Elem DP (m)'])
+    var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)'])
 
     if var1=='P(bar)':
         nam1='P(bar)'
@@ -181,10 +181,9 @@ with col2:
         nam1='DP(Bar)'
     elif var1=='DP(m)':
         nam1='DP(m)'
-    elif var1=='Velocity(m/s)':
-        nam1='Velocity(m/s)'
     else:
-        nam1='Elem DP (m)'
+        nam1='Velocity(m/s)'
+    
 
     if var2=='P(bar)':
         nam2='P(bar)'
@@ -192,10 +191,9 @@ with col2:
         nam2='DP(Bar)'
     elif var2=='DP(m)':
         nam2='DP(m)'
-    elif var2=='Velocity(m/s)':
-        nam2='Velocity(m/s)'
     else:
-        nam2='Elem DP (m)'   
+        nam2='Velocity(m/s)'
+       
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
