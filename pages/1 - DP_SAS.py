@@ -197,5 +197,22 @@ else:
 st.write('Critical speed(m/s): ', round(critical_speed,2))
 st.write('Maximum speed(m/s): ', round(vm,2))           
 
+st.subheader('Results:📈')
+
+
+opt=st.radio("Select the option: 👉",
+        options=["Download","Table"],)
+        
+if opt=='Table':
+        st.table(df.style.format("{:.2f}"))
+        
+else:
+        def convert_df(df):
+    
+                return df.to_csv().encode('utf-8')
+
+        csv = convert_df(df)
+
+        st.download_button(label="Download result as CSV",data=csv,file_name='results.csv',mime='text/csv')
                
 st.caption('Application developed by Adilton Lopes da Silva (INEOS Polymers Engineering & Technology Support)')
