@@ -378,13 +378,14 @@ fig_p1.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='cente
 st.plotly_chart(fig_p1, use_container_width=True)
         
 
-st.write('Results:')
+st.subheader('Results:📈')
+
 
 opt=st.radio("Select the option: 👉",
         options=['None',"Table", "Download"],)
         
 if opt=='Table':
-        st.table(df_n.round(2))
+        st.table(df_n.style.format("{:.2%}"))
         
 elif opt=="Download":
         def convert_df(df):
