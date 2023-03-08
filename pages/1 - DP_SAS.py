@@ -184,7 +184,7 @@ fig.update_layout(height=600, width=800, title_font_size=24,title_text="Delta Pr
 fig.update_xaxes(title_text='Equivalent length (m)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
 fig.update_yaxes(title_text=var2,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
 fig.update_yaxes(title_text=var1,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
-fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.3,font=dict(size= 20))
+fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.3,font=dict(size= 20)))
 
 
 st.plotly_chart(fig, use_container_width=True)
