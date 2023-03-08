@@ -63,7 +63,7 @@ st.title('Delta Pressure Multisteps - Slurry Process INEOS')
 
 
 l=st.slider('Equiv. length (m): ',1,50,11)
-Elem=st.slider('Elements: ',1, 100,25)
+Elem=25
    
 st.sidebar.header('Process inputs:')
 Temp= st.sidebar.number_input('Temperature (°C)',value=80,min_value=10, max_value=200)
@@ -182,8 +182,8 @@ fig.add_trace(go.Scatter(y=df[var1],x=l_s['acum'],name=var1,line=dict(color='fir
 fig.add_trace(go.Scatter(y=df[var2],x=l_s['acum'],name=var2,line=dict(color='royalblue', width=4)),secondary_y=True)
 fig.update_layout(height=600, width=800, title_font_size=24,title_text="Delta Pressure Multisteps - Slurry INEOS")
 fig.update_xaxes(title_text='Equivalent length (m)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
-fig.update_yaxes(title_text=var2,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
-fig.update_yaxes(title_text=var1,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig.update_yaxes(title_text=var1,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig.update_yaxes(title_text=var2,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
 fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.3,font=dict(size= 20)))
 
 
