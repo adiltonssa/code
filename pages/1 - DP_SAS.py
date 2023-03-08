@@ -173,34 +173,18 @@ col1, col2 = st.columns(2)
 with col1:
     var1=st.selectbox('Select the variable 1:', ['P(bar)','DP(Bar)','DP(m)','Velocity(m/s)'])
 with col2:
-    var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)'])
-
-    if var1=='P(bar)':
-        nam1='P(bar)'
-    elif var1=='DP(Bar)':
-        nam1='DP(Bar)'
-    elif var1=='DP(m)':
-        nam1='DP(m)'
-    else:
-        nam1='Velocity(m/s)'
-    
-
-    if var2=='P(bar)':
-        nam2='P(bar)'
-    elif var2=='DP(Bar)':
-        nam2='DP(Bar)'
-    elif var2=='DP(m)':
-        nam2='DP(m)'
-    else:
-        nam2='Velocity(m/s)'
-       
+    var2=st.selectbox('Select the variable 2:', ['Velocity(m/s)','DP(Bar)','DP(m)','P(bar)'])     
     
         
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(y=df[var1],x=l_s['acum'],name=nam1),secondary_y=False)
-fig.add_trace(go.Scatter(y=df[var2],x=l_s['acum'],name=nam2),secondary_y=True)
-fig.update_layout(height=600, width=800, title_text="Delta Pressure Multisteps - Slurry INEOS")
-fig.update_xaxes(title_text="Equivalent length")
+fig.add_trace(go.Scatter(y=df[var1],x=l_s['acum'],name=var1),secondary_y=False)
+fig.add_trace(go.Scatter(y=df[var2],x=l_s['acum'],name=var2),secondary_y=True)
+fig.update_layout(height=600, width=800, title_font_size=24,title_text="Delta Pressure Multisteps - Slurry INEOS")
+fig.update_xaxes(title_text='Equivalent length (m)',title_font_size=24,showline=True, linewidth=2, linecolor='black', mirror=True)
+fig.update_yaxes(title_text=var2,title_font_size=20,showline=True, linewidth=2,ticks="outside", tickfont=dict(size=16),linecolor='black', mirror=True,secondary_y=False)
+fig.update_yaxes(title_text=var1,title_font_size=20,secondary_y=True,ticks="outside",tickfont=dict(size=16))
+fig.update_layout(legend=dict(orientation="h",yanchor="bottom",xanchor='center',x=0.45,y=-0.3))
+
 
 st.plotly_chart(fig, use_container_width=True)
     
